@@ -1,9 +1,9 @@
 .PHONY: all website
 
-# Run for example as: `make slide block=A no=i`
+# Run for example as: `make slide fn=01-Introduction`
 slide:
-	pandoc -t html5 --template=content/slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/b$(block)/slides_$(block)_$(no).md -o content/slides/block_$(block)_$(no).html
-	decktape automatic --chrome-arg=--no-sandbox -s 1280x960 content/slides/block_$(block)_$(no).html content/slides/pdf/block_$(block)_$(no).pdf
+	pandoc -t html5 --template=content/slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/slides/$(fn).md -o content/slides/$(fn).html
+	decktape automatic --chrome-arg=--no-sandbox -s 1280x960 content/slides/$(fn).html content/slides/$(fn).pdf
 
 pack: html pdf
 html:

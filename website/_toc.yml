@@ -1,14 +1,26 @@
 - file: content/home
 
+- part: Course Specs
+  chapters:
+  - file: content/overview
+  - file: content/assessment
+  - file: content/infrastructure
+  - file: content/bibliography
+
+- part: Introduction
+  chapters:
+  - file: content/notebooks/01-Introduction
+  - file: content/notebooks/02-Computational_building_blocks
+  
 - part: Data Wrangling
   chapters:
-  - file: content/notebooks/01_tabular_data
-  - file: content/notebooks/02_tabular_advanced
-  - file: content/notebooks/03_tabular_data_viz
+  - file: content/notebooks/03-Tabular_data
+  - file: content/notebooks/04-Tabular_data_viz
+  - file: content/notebooks/05-Tabular_advanced
 
 - part: Machine Learning
   chapters:
-  - file: content/notebooks/04_unsupervised_learning
-  - file: content/notebooks/05_supervised_learning
-  - file: content/notebooks/06_inference
-  - file: content/notebooks/07_overfitting_cv
+  - file: content/notebooks/06-Unsupervised_learning
+  - file: content/notebooks/07-Supervised_learning
+  - file: content/notebooks/08-Inference
+  - file: content/notebooks/09-Overfitting_cv
