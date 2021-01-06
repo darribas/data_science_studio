@@ -1,0 +1,14 @@
+- file: content/home
+
+- part: Data Wrangling
+  chapters:
+  - file: content/notebooks/01_tabular_data
+  - file: content/notebooks/02_tabular_advanced
+  - file: content/notebooks/03_tabular_data_viz
+
+- part: Machine Learning
+  chapters:
+  - file: content/notebooks/04_unsupervised_learning
+  - file: content/notebooks/05_supervised_learning
+  - file: content/notebooks/06_inference
+  - file: content/notebooks/07_overfitting_cv

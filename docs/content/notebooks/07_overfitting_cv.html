@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overfitting &amp; Cross-Validation &#8212; Data Science Studio</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Inference" href="06_inference.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Science Studio</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../home.html">
+   ENVS615 - Analysis of Human Dynamics
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data Wrangling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_tabular_data.html">
+   Reading &amp; Manipulating Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_tabular_advanced.html">
+   Advanced Tabular Manipulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_tabular_data_viz.html">
+   Visualising Tabular Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_unsupervised_learning.html">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_supervised_learning.html">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_inference.html">
+   Inference
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Overfitting &amp; Cross-Validation
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/notebooks/07_overfitting_cv.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/darribas/data_science_studio/master?urlpath=tree/content/notebooks/07_overfitting_cv.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overfitting">
+   Overfitting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cross-validation-to-the-rescue">
+   Cross-Validation to the rescue
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-test-split">
+     Train/test split
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-fold-cv">
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+     -fold CV
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameter-optimisation-in-scikit-learn">
+     Parameter optimisation in
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       scikit-learn
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="overfitting-cross-validation">
+<h1>Overfitting &amp; Cross-Validation<a class="headerlink" href="#overfitting-cross-validation" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="#Overfitting">Overfitting</a></p></li>
+<li><p><span class="xref myst">Cross-Validation</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">log1p</span><span class="p">,</span> <span class="n">sqrt</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;../data/lm_results.parquet&quot;</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="overfitting">
+<h2>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline">¶</a></h2>
+<p>So we have models but, are they any good?</p>
+<p>Model evaluation the ML is all about predictive performance (remember the <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> Vs <span class="math notranslate nohighlight">\(\hat{y}\)</span>, this is all about <span class="math notranslate nohighlight">\(\hat{y}\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Truth&quot;</span><span class="p">)):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="s2">&quot;Truth&quot;</span><span class="p">,</span> 
+                <span class="n">m</span><span class="p">,</span> 
+                <span class="n">res</span><span class="p">,</span>
+                <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+               <span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Observed Vs Predicted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/07_overfitting_cv_4_0.png" src="../../_images/07_overfitting_cv_4_0.png" />
+</div>
+</div>
+<p>There are several measures, we’ll use two:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R^2\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s compare apparent performance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2s</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;LM-Raw&quot;</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">],</span> 
+                                        <span class="n">db</span><span class="p">[</span><span class="s2">&quot;LM-Raw&quot;</span><span class="p">]</span>
+                                       <span class="p">),</span>
+                     <span class="s2">&quot;LM-Log&quot;</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">log1p</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">]),</span>
+                                        <span class="n">db</span><span class="p">[</span><span class="s2">&quot;LM-Log&quot;</span><span class="p">]</span>
+                                       <span class="p">),</span>
+                     <span class="s2">&quot;RF-Raw&quot;</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">],</span>
+                                        <span class="n">db</span><span class="p">[</span><span class="s2">&quot;RF-Raw&quot;</span><span class="p">]</span>
+                                       <span class="p">),</span>
+                     <span class="s2">&quot;RF-Log&quot;</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">log1p</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">]),</span>
+                                        <span class="n">db</span><span class="p">[</span><span class="s2">&quot;RF-Log&quot;</span><span class="p">]</span>
+                                       <span class="p">),</span>
+                    <span class="p">})</span>
+<span class="n">r2s</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LM-Raw    0.102694
+LM-Log    0.315159
+RF-Raw    0.225648
+RF-Log    0.443311
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>(R)MSE</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span> <span class="k">as</span> <span class="n">mse</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And a similar comparison (where we can convert all predictions to price units):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mses</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;LM-Raw&quot;</span><span class="p">:</span> <span class="n">mse</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">],</span> 
+                                    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;LM-Raw&quot;</span><span class="p">]</span>
+                                   <span class="p">),</span>
+                      <span class="s2">&quot;LM-Log&quot;</span><span class="p">:</span> <span class="n">mse</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">],</span>
+                                    <span class="n">exp</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;LM-Log&quot;</span><span class="p">])</span>
+                                   <span class="p">),</span>
+                      <span class="s2">&quot;RF-Raw&quot;</span><span class="p">:</span> <span class="n">mse</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">],</span>
+                                    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;RF-Raw&quot;</span><span class="p">]</span>
+                                   <span class="p">),</span>
+                      <span class="s2">&quot;RF-Log&quot;</span><span class="p">:</span> <span class="n">mse</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">],</span>
+                                    <span class="n">exp</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;RF-Log&quot;</span><span class="p">])</span>
+                                   <span class="p">),</span>
+                     <span class="p">})</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sqrt</span><span class="p">)</span>
+<span class="n">mses</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LM-Raw     149.522153
+LM-Log    7570.085725
+RF-Raw     138.900699
+RF-Log     140.951982
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now this is great news for the random forest! 🎉</p>
+<p>… or is it?</p>
+<p>Let’s do a thought experiment. Imagine that AirBnb, for some reason, did not initially move into the Passy neighbourhood.</p>
+<p>Let’s quickly retrain our models for that world. For convenience, let’s focus on the raw models, not those based on logs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">room_type_ds</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;room_type&quot;</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">db</span><span class="p">[[</span><span class="s2">&quot;bathrooms&quot;</span><span class="p">,</span> <span class="s2">&quot;bedrooms&quot;</span><span class="p">]],</span>
+                   <span class="n">room_type_ds</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Entire home/apt&quot;</span><span class="p">,</span>
+                                     <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                  <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                 <span class="p">)</span>
+<span class="c1"># Passy IDs</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;neighbourhood_cleansed == &#39;Passy&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+<span class="c1"># Non Passy IDs</span>
+<span class="n">npi</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># Non Passy data (same as in previous notebook)</span>
+<span class="n">X_np</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">npi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># Linear model</span>
+<span class="n">lm_raw_np_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_np</span><span class="p">,</span> 
+                                         <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">npi</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span><span class="p">]</span>
+                                        <span class="p">)</span>
+<span class="n">lm_raw_np</span> <span class="o">=</span> <span class="n">lm_raw_np_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_np</span><span class="p">)</span>
+<span class="c1"># RF</span>
+<span class="n">rf_raw_np_model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                        <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span>
+                                       <span class="p">)</span>\
+                                      <span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_np</span><span class="p">,</span> 
+                                           <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">npi</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span><span class="p">]</span>
+                                          <span class="p">)</span>
+<span class="n">rf_raw_np</span> <span class="o">=</span> <span class="n">rf_raw_np_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_np</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <em>apparent</em> performance of our model is similar, a bit better if anything:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mses_np</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;LM-Raw&quot;</span><span class="p">:</span> <span class="n">mse</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">npi</span><span class="p">,</span> <span class="s2">&quot;Truth&quot;</span><span class="p">],</span> 
+                                       <span class="n">lm_raw_np</span>
+                                      <span class="p">),</span>
+                         <span class="s2">&quot;RF-Raw&quot;</span><span class="p">:</span> <span class="n">mse</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">npi</span><span class="p">,</span> <span class="s2">&quot;Truth&quot;</span><span class="p">],</span>
+                                       <span class="n">rf_raw_np</span>
+                                      <span class="p">),</span>
+                        <span class="p">})</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sqrt</span><span class="p">)</span>
+<span class="n">mses_np</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LM-Raw    144.326619
+RF-Raw    134.288231
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mses</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">mses_np</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LM-Raw    149.522153
+RF-Raw    138.900699
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now imagine that Passy comes on the AirBnb market and we need to provide price estimates for its properties. We can use our model to make predictions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linear predictions</span>
+<span class="n">lm_raw_passy_pred</span> <span class="o">=</span> <span class="n">lm_raw_np_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+<span class="n">lm_raw_passy_pred</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">lm_raw_passy_pred</span><span class="p">,</span>
+                                  <span class="n">index</span><span class="o">=</span><span class="n">pi</span>
+                                 <span class="p">)</span>
+<span class="c1"># RF predictions</span>
+<span class="n">rf_raw_passy_pred</span> <span class="o">=</span> <span class="n">rf_raw_np_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+<span class="n">fr_raw_passy_pred</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">rf_raw_passy_pred</span><span class="p">,</span>
+                                  <span class="n">index</span><span class="o">=</span><span class="n">pi</span>
+                                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How’s our model doing now?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mses_p</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;LM-Raw&quot;</span><span class="p">:</span> <span class="n">mse</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="s2">&quot;Truth&quot;</span><span class="p">],</span> 
+                                      <span class="n">lm_raw_passy_pred</span>
+                                     <span class="p">),</span>
+                        <span class="s2">&quot;RF-Raw&quot;</span><span class="p">:</span> <span class="n">mse</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="s2">&quot;Truth&quot;</span><span class="p">],</span>
+                                      <span class="n">fr_raw_passy_pred</span>
+                                     <span class="p">),</span>
+                       <span class="p">})</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sqrt</span><span class="p">)</span>
+<span class="n">mses_p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LM-Raw    235.291495
+RF-Raw    218.192959
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mses_np</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LM-Raw    144.326619
+RF-Raw    134.288231
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not that great on data the models have not seen before.</p>
+<p>Linear regression is a particular case in that, given the features chosen, one cannot tweak much more; but the RF does allow us to tweak things slightly differently. How is a matter of (computational) brute force and a bit of savvy-ness in designing the data split.</p>
+</div>
+<div class="section" id="cross-validation-to-the-rescue">
+<h2>Cross-Validation to the rescue<a class="headerlink" href="#cross-validation-to-the-rescue" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>What it does: give you a better sense of the actual performance of your model</p></li>
+<li><p>What it doesn’t (estimate a better model per-se)</p></li>
+</ul>
+<div class="section" id="train-test-split">
+<h3>Train/test split<a class="headerlink" href="#train-test-split" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span>
+                                                    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">],</span>
+                                                    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.8</span>
+                                                   <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the linear model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_estimator</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="c1"># Fit on X/Y train</span>
+<span class="n">lm_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># Predict on X test</span>
+<span class="n">lm_y_pred</span> <span class="o">=</span> <span class="n">lm_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="c1"># Evaluate on Y test</span>
+<span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lm_y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>160.31902561005145
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the random forest:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_estimator</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                     <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span>
+                                    <span class="p">)</span>
+<span class="c1"># Train on X/Y train</span>
+<span class="n">rf_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># Predict on X test</span>
+<span class="n">rf_y_pred</span> <span class="o">=</span> <span class="n">rf_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="c1"># Evaluate on Y test</span>
+<span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rf_y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>154.8768314139274
+</pre></div>
+</div>
+</div>
+</div>
+<p>Worse than in-testing, but better than on an entirely new set of data with (potentially) different structure.</p>
+<p>Now, the splitting that <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> does is random. What if it happens to be very particular? Can we trust the performance scores we recover?</p>
+</div>
+<div class="section" id="k-fold-cv">
+<h3><span class="math notranslate nohighlight">\(k\)</span>-fold CV<a class="headerlink" href="#k-fold-cv" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the linear model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_kcv_mses</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">(),</span>
+                              <span class="n">X</span><span class="p">,</span>
+                              <span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">],</span>
+                              <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                              <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_squared_error&quot;</span>
+                             <span class="p">)</span>
+<span class="c1"># sklearn uses neg to optimisation is alway maximisation</span>
+<span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">lm_kcv_mses</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>156.0444939069434
+</pre></div>
+</div>
+</div>
+</div>
+<p>And for the random forest:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_estimator</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                     <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span>
+                                    <span class="p">)</span>
+<span class="n">rf_kcv_mses</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">rf_estimator</span><span class="p">,</span>
+                              <span class="n">X</span><span class="p">,</span>
+                              <span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">],</span>
+                              <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                              <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_squared_error&quot;</span>
+                             <span class="p">)</span>
+<span class="c1"># sklearn uses neg to optimisation is alway maximisation</span>
+<span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">rf_kcv_mses</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>142.12045777379396
+</pre></div>
+</div>
+</div>
+</div>
+<p>These would be more reliable measures of model performance. The difference between CV’ed estimates and original ones can be seen as an indication of overfitting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mses</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LM-Raw     149.522153
+LM-Log    7570.085725
+RF-Raw     138.900699
+RF-Log     140.951982
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>In our case, since we’re using very few features, both models  probably already feature enough “regularisation” and the changes are not very dramatic. In other contexts, this can be a drastic change (e.g. <a class="reference external" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0176684">Arribas-Bel, Patino &amp; Duque; 2017</a>).</p>
+</div>
+<div class="section" id="parameter-optimisation-in-scikit-learn">
+<h3>Parameter optimisation in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#parameter-optimisation-in-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<p>Random Forests really can be optimised over two key parameters, <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> and <code class="docutils literal notranslate"><span class="pre">max_features</span></code>, although there are more to tweak around:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RandomForestRegressor</span><span class="p">()</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bootstrap&#39;: True,
+ &#39;criterion&#39;: &#39;mse&#39;,
+ &#39;max_depth&#39;: None,
+ &#39;max_features&#39;: &#39;auto&#39;,
+ &#39;max_leaf_nodes&#39;: None,
+ &#39;min_impurity_decrease&#39;: 0.0,
+ &#39;min_impurity_split&#39;: None,
+ &#39;min_samples_leaf&#39;: 1,
+ &#39;min_samples_split&#39;: 2,
+ &#39;min_weight_fraction_leaf&#39;: 0.0,
+ &#39;n_estimators&#39;: &#39;warn&#39;,
+ &#39;n_jobs&#39;: None,
+ &#39;oob_score&#39;: False,
+ &#39;random_state&#39;: None,
+ &#39;verbose&#39;: 0,
+ &#39;warm_start&#39;: False}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we’ll exhaustively test each combination for several values of the parameters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+    <span class="s2">&quot;max_features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> to automatically work over every combination, create cross-validated scores (MSE), and pick the preferred one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This can get fairly computationally intensive, and it is also “embarrasingly parallel”, so it’s a good candidate to parallelise.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">RandomForestRegressor</span><span class="p">(),</span>
+                    <span class="n">param_grid</span><span class="p">,</span>
+                    <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">,</span>
+                    <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+                   <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once defined, we <code class="docutils literal notranslate"><span class="pre">fit</span></code> to actually execute computations on a given set of data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.23 s, sys: 260 ms, total: 2.49 s
+Wall time: 1min 3s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5, error_score=&#39;raise-deprecating&#39;,
+             estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;,
+                                             max_depth=None,
+                                             max_features=&#39;auto&#39;,
+                                             max_leaf_nodes=None,
+                                             min_impurity_decrease=0.0,
+                                             min_impurity_split=None,
+                                             min_samples_leaf=1,
+                                             min_samples_split=2,
+                                             min_weight_fraction_leaf=0.0,
+                                             n_estimators=&#39;warn&#39;, n_jobs=None,
+                                             oob_score=False, random_state=None,
+                                             verbose=0, warm_start=False),
+             iid=&#39;warn&#39;, n_jobs=-1,
+             param_grid={&#39;max_features&#39;: [1, 2, 3, 4, 5],
+                         &#39;n_estimators&#39;: [5, 25, 50, 75, 100, 150]},
+             pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=False,
+             scoring=&#39;neg_mean_squared_error&#39;, verbose=0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we can explore the output from the same <code class="docutils literal notranslate"><span class="pre">grid</span></code> object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_res</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
+<span class="n">grid_res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_fit_time</th>
+      <th>std_fit_time</th>
+      <th>mean_score_time</th>
+      <th>std_score_time</th>
+      <th>param_max_features</th>
+      <th>param_n_estimators</th>
+      <th>params</th>
+      <th>split0_test_score</th>
+      <th>split1_test_score</th>
+      <th>split2_test_score</th>
+      <th>split3_test_score</th>
+      <th>split4_test_score</th>
+      <th>mean_test_score</th>
+      <th>std_test_score</th>
+      <th>rank_test_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.044183</td>
+      <td>0.004684</td>
+      <td>0.004244</td>
+      <td>0.000260</td>
+      <td>1</td>
+      <td>5</td>
+      <td>{'max_features': 1, 'n_estimators': 5}</td>
+      <td>-14254.928505</td>
+      <td>-24515.909454</td>
+      <td>-10410.195100</td>
+      <td>-27685.292831</td>
+      <td>-27121.178582</td>
+      <td>-20797.500894</td>
+      <td>7098.711356</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.189017</td>
+      <td>0.009447</td>
+      <td>0.013378</td>
+      <td>0.000627</td>
+      <td>1</td>
+      <td>25</td>
+      <td>{'max_features': 1, 'n_estimators': 25}</td>
+      <td>-14018.387416</td>
+      <td>-24578.948029</td>
+      <td>-9951.211755</td>
+      <td>-28139.633707</td>
+      <td>-27071.438832</td>
+      <td>-20751.923948</td>
+      <td>7364.190862</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.511528</td>
+      <td>0.101887</td>
+      <td>0.030065</td>
+      <td>0.005109</td>
+      <td>1</td>
+      <td>50</td>
+      <td>{'max_features': 1, 'n_estimators': 50}</td>
+      <td>-14040.488654</td>
+      <td>-24442.353538</td>
+      <td>-10936.845099</td>
+      <td>-27982.927561</td>
+      <td>-27069.003478</td>
+      <td>-20894.323666</td>
+      <td>7029.792681</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.888280</td>
+      <td>0.044405</td>
+      <td>0.055058</td>
+      <td>0.025995</td>
+      <td>1</td>
+      <td>75</td>
+      <td>{'max_features': 1, 'n_estimators': 75}</td>
+      <td>-13989.599797</td>
+      <td>-24490.449930</td>
+      <td>-10812.686080</td>
+      <td>-28041.971909</td>
+      <td>-27071.890015</td>
+      <td>-20881.319546</td>
+      <td>7092.208515</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.997883</td>
+      <td>0.174860</td>
+      <td>0.058024</td>
+      <td>0.009668</td>
+      <td>1</td>
+      <td>100</td>
+      <td>{'max_features': 1, 'n_estimators': 100}</td>
+      <td>-13991.191017</td>
+      <td>-24485.866143</td>
+      <td>-10455.538338</td>
+      <td>-28071.623269</td>
+      <td>-27077.875273</td>
+      <td>-20816.418808</td>
+      <td>7200.559021</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And the winner is…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_res</span><span class="p">[</span><span class="n">grid_res</span><span class="p">[</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">]</span> \
+         <span class="o">==</span> \
+         <span class="n">grid_res</span><span class="p">[</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="p">][</span><span class="s2">&quot;params&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28    {&#39;max_features&#39;: 5, &#39;n_estimators&#39;: 100}
+Name: params, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or, we can visualise the surface generated in the grid:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_res</span><span class="p">[[</span><span class="s2">&quot;param_n_estimators&quot;</span><span class="p">,</span> <span class="s2">&quot;param_max_features&quot;</span><span class="p">]]</span>\
+        <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;param_n_estimators&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;param_max_features&quot;</span><span class="p">,</span>
+                      <span class="n">c</span><span class="o">=</span><span class="n">grid_res</span><span class="p">[</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">],</span>
+                      <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span>
+                     <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/07_overfitting_cv_59_0.png" src="../../_images/07_overfitting_cv_59_0.png" />
+</div>
+</div>
+<p>It is also possible to see that, as expected, the more trees, the longer it takes to compute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_res</span><span class="p">[[</span><span class="s2">&quot;param_n_estimators&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_fit_time&quot;</span><span class="p">]]</span>\
+        <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;param_n_estimators&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;mean_fit_time&quot;</span>
+                     <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/07_overfitting_cv_61_0.png" src="../../_images/07_overfitting_cv_61_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong> What’s the model performance (R/MSE) of the random forest setup we’ve used with the optimised set of parameters from the experiment above?</p>
+<hr class="docutils" />
+<p>More at:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://scikit-learn.org/stable/modules/grid_search.html">https://scikit-learn.org/stable/modules/grid_search.html</a></p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="06_inference.html" title="previous page">Inference</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dani Arribas-Bel<br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Data Science Studio</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-6032674-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>
