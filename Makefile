@@ -47,16 +47,12 @@ test:
 	mkdir tests
 	jupyter nbconvert --to notebook \
                       --execute \
-                      --output-dir tests \
+                      --output-dir=tests \
                       --ExecutePreprocessor.timeout=600 \
-                      content/b*/*.ipynb 
-	jupyter nbconvert --to notebook \
-                      --execute \
-                      --output-dir tests \
-                      --ExecutePreprocessor.timeout=600 \
-                      content/assessment.ipynb                      
+                      content/notebooks/*.ipynb 
+
 	rm -rf tests
-	echo "###########################\n\nAll blocks passed\n\n###########################"
+	echo "########\n\nAll blocks passed\n\n########"
 reset_docs:
 	rm -r docs/*
 	git checkout HEAD docs/
