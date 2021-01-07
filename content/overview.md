@@ -15,7 +15,7 @@ Similarly, the overview below contains them for a quick, general sense at what i
 ## Day 1 - Introduction
 
 - 💻 `[Async]` Introduction to the course: [*data, data, data*](notebooks/01-Introduction)
-- [Computational building blocks](notebooks/02-Computational_building_blocks)
+- 💻 `[Async]` [Computational building blocks](notebooks/02-Computational_building_blocks)
 
 ## Day 2 - Tabular data
 
