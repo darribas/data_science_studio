@@ -1,6 +1,5 @@
-# `ENVS615`
-
-## Data Science Studio
+# Home
+## `ENVS615` - *Data Science Studio*
 
 - [Dani Arribas-Bel](https://darribas.org) [`[@darribas]`](https://twitter.com/darribas)
 

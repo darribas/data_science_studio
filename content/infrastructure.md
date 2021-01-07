@@ -16,6 +16,7 @@ Instructions on how to install a software stack that allows you to run the mater
 
 [<img alt="@gdsl-ul/soft_install" width=130px height=65px style="border-width:0;margin-left: 0px" src="figs/gdsl.png" />](https://gdsl-ul.github.io/soft_install/)
 
+(github_repo)=
 ### Github repository
 
 All the materials for this course and this website are available on the following Github repository:
