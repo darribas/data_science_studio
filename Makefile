@@ -1,4 +1,4 @@
-.PHONY: all website
+.PHONY: all html pdf
 
 # Run for example as: `make slide fn=01-Introduction`
 slide:
