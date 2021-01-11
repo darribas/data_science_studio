@@ -3,8 +3,9 @@
 - part: Course Specs
   chapters:
   - file: content/overview
-  - file: content/assessment
   - file: content/infrastructure
+  - file: content/data
+  - file: content/assessment
   - file: content/z_bibliography
 
 - part: Introduction
