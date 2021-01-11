@@ -6,8 +6,8 @@ Key information:
 * [Equivalent to 5,000 words] Up to five figures and three tables + code +
   comments + up to 2,000
 * Chance to be reassessed
-* Due on **TBC**
-* Electronic submission only. Static HTML with NO interactive cells
+* Due on **14:00, March 9th 2021**
+* Electronic submission through Turnitin/CANVAS. Static HTML with NO interactive cells
 
 This module is assessed through a _computational essay_. To complete it
 successfully, you will need to demonstrate aptitude in at least three areas:
