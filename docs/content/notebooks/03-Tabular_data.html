@@ -1,0 +1,2539 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reading &amp; Manipulating Tabular Data &#8212; Data Science Studio</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Visualising Tabular Data" href="04-Tabular_data_viz.html" />
+    <link rel="prev" title="Computational building blocks" href="02-Computational_building_blocks.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Science Studio</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../home.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Course Specs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#data">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#further-materials">
+   Further materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../assessment.html">
+   Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../infrastructure.html">
+   Infrastructure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../z_bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction.html">
+   “Data, data, data”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Computational_building_blocks.html">
+   Computational building blocks
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data Wrangling
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Reading &amp; Manipulating Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Tabular_data_viz.html">
+   Visualising Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Tabular_advanced.html">
+   Advanced Tabular Manipulation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Unsupervised_learning.html">
+   Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Supervised_learning.html">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Inference.html">
+   Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Overfitting_cv.html">
+   Overfitting &amp; Cross-Validation
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/notebooks/03-Tabular_data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/darribas/data_science_studio/master?urlpath=tree/content/notebooks/03-Tabular_data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indices">
+   Indices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slicing-and-dicing-data">
+   Slicing and Dicing Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#index-based-queries">
+     Index-based queries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#order-based-queries">
+     Order-based queries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conditional-queries">
+     Conditional queries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#editing-tables">
+   Editing tables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-data">
+   Writing Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-resources">
+   Further Resources
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reading-manipulating-tabular-data">
+<h1>Reading &amp; Manipulating Tabular Data<a class="headerlink" href="#reading-manipulating-tabular-data" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../overview.html#delivery-modes"><span class="std std-ref">👨‍🏫 [Sync]</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To note:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> magic</p></li>
+<li><p>Library import and alias</p></li>
+</ul>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../figs/paris_data.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03-Tabular_data_4_0.png" src="../../_images/03-Tabular_data_4_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Read in <code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Connect to <code class="docutils literal notranslate"><span class="pre">SQLite</span></code> and query</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///../data/paris_abb_mini.db&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qry</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT * </span>
+<span class="s2">FROM db </span>
+<span class="s2">LIMIT 5;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">dbs</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">qry</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<span class="n">dbs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3109</td>
+      <td>Observatoire</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5396</td>
+      <td>Hôtel-de-Ville</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Pull-out Sofa</td>
+      <td>115.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7397</td>
+      <td>Hôtel-de-Ville</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>Real Bed</td>
+      <td>119.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7964</td>
+      <td>Opéra</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9952</td>
+      <td>Popincourt</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>75.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qry</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT id, Price </span>
+<span class="s2">FROM db </span>
+<span class="s2">WHERE neighbourhood_cleansed = &#39;Popincourt&#39;;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">dbs</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">qry</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<span class="n">dbs</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 5137 entries, 0 to 5136
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   id      5137 non-null   int64  
+ 1   Price   5137 non-null   float64
+dtypes: float64(1), int64(1)
+memory usage: 80.4 KB
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Explore</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3109</td>
+      <td>Observatoire</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5396</td>
+      <td>Hôtel-de-Ville</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Pull-out Sofa</td>
+      <td>115.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7397</td>
+      <td>Hôtel-de-Ville</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>Real Bed</td>
+      <td>119.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7964</td>
+      <td>Opéra</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9952</td>
+      <td>Popincourt</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>75.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 50280 entries, 0 to 50279
+Data columns (total 10 columns):
+ #   Column                  Non-Null Count  Dtype  
+---  ------                  --------------  -----  
+ 0   id                      50280 non-null  int64  
+ 1   neighbourhood_cleansed  50280 non-null  object 
+ 2   property_type           50280 non-null  object 
+ 3   room_type               50280 non-null  object 
+ 4   accommodates            50280 non-null  int64  
+ 5   bathrooms               50280 non-null  float64
+ 6   bedrooms                50280 non-null  float64
+ 7   beds                    50280 non-null  float64
+ 8   bed_type                50280 non-null  object 
+ 9   Price                   50280 non-null  float64
+dtypes: float64(4), int64(2), object(4)
+memory usage: 3.8+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>5.028000e+04</td>
+      <td>50280.000000</td>
+      <td>50280.000000</td>
+      <td>50280.000000</td>
+      <td>50280.000000</td>
+      <td>50280.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.968671e+07</td>
+      <td>3.063425</td>
+      <td>1.117045</td>
+      <td>1.077804</td>
+      <td>1.664698</td>
+      <td>110.630549</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.140675e+07</td>
+      <td>1.556731</td>
+      <td>0.687370</td>
+      <td>1.001000</td>
+      <td>1.164917</td>
+      <td>157.848189</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>3.109000e+03</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>9.340209e+06</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>60.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.999153e+07</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>80.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2.987492e+07</td>
+      <td>4.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>120.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>3.858893e+07</td>
+      <td>17.000000</td>
+      <td>50.000000</td>
+      <td>50.000000</td>
+      <td>50.000000</td>
+      <td>10000.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects can hold different types of data</p>
+<ul class="simple">
+<li><p>“Whole” numbers (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></li>
+<li><p>Decimals (<code class="docutils literal notranslate"><span class="pre">float</span></code>)</p></li>
+<li><p>Categorical (<code class="docutils literal notranslate"><span class="pre">pandas.Category</span></code>)</p></li>
+<li><p>Dates (<code class="docutils literal notranslate"><span class="pre">pandas.Timestamp</span></code>)</p></li>
+<li><p>Geo (<code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>)</p></li>
+<li><p>…</p></li>
+</ul>
+</div>
+<div class="section" id="indices">
+<h2>Indices<a class="headerlink" href="#indices" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3109</td>
+      <td>Observatoire</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5396</td>
+      <td>Hôtel-de-Ville</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Pull-out Sofa</td>
+      <td>115.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3109</th>
+      <td>Observatoire</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>5396</th>
+      <td>Hôtel-de-Ville</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Pull-out Sofa</td>
+      <td>115.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbi</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbi</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Int64Index([    3109,     5396,     7397,     7964,     9952,    10710,
+               11170,    11213,    11265,    11798,
+            ...
+            38485563, 38489275, 38513797, 38516223, 38516341, 38517692,
+            38520175, 38537044, 38546594, 38588929],
+           dtype=&#39;int64&#39;, name=&#39;id&#39;, length=50280)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbi</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;neighbourhood_cleansed&#39;, &#39;property_type&#39;, &#39;room_type&#39;, &#39;accommodates&#39;,
+       &#39;bathrooms&#39;, &#39;bedrooms&#39;, &#39;beds&#39;, &#39;bed_type&#39;, &#39;Price&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="slicing-and-dicing-data">
+<h2>Slicing and Dicing Data<a class="headerlink" href="#slicing-and-dicing-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="index-based-queries">
+<h3>Index-based queries<a class="headerlink" href="#index-based-queries" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Columns</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     60.0
+1    115.0
+2    119.0
+3    130.0
+4     75.0
+Name: Price, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Generic point-querying</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60.0
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Full slice of one dimension</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id                                   3109
+neighbourhood_cleansed       Observatoire
+property_type                   Apartment
+room_type                 Entire home/apt
+accommodates                            2
+bathrooms                               1
+bedrooms                                0
+beds                                    1
+bed_type                         Real Bed
+Price                                  60
+Name: 0, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;Price&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         60.0
+1        115.0
+2        119.0
+3        130.0
+4         75.0
+         ...  
+50275    250.0
+50276     40.0
+50277     60.0
+50278     65.0
+50279     69.0
+Name: Price, Length: 50280, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Range queries</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      Observatoire
+1    Hôtel-de-Ville
+2    Hôtel-de-Ville
+3             Opéra
+4        Popincourt
+5            Élysée
+Name: neighbourhood_cleansed, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;property_type&quot;</span><span class="p">:</span><span class="s2">&quot;bed_type&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>property_type          Apartment
+room_type        Entire home/apt
+accommodates                   4
+bathrooms                      1
+bedrooms                       1
+beds                           2
+bed_type                Real Bed
+Name: 5, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>List-based queries</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Price</th>
+      <th>id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60.0</td>
+      <td>3109</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>128.0</td>
+      <td>32082</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>65.0</td>
+      <td>17919</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>80.0</td>
+      <td>21264</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>49.0</td>
+      <td>26567</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>120.0</td>
+      <td>11798</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="order-based-queries">
+<h3>Order-based queries<a class="headerlink" href="#order-based-queries" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbi</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3109</th>
+      <td>Observatoire</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>5396</th>
+      <td>Hôtel-de-Ville</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Pull-out Sofa</td>
+      <td>115.0</td>
+    </tr>
+    <tr>
+      <th>7397</th>
+      <td>Hôtel-de-Ville</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>Real Bed</td>
+      <td>119.0</td>
+    </tr>
+    <tr>
+      <th>7964</th>
+      <td>Opéra</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>9952</th>
+      <td>Popincourt</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>75.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong>:</p>
+<ul class="simple">
+<li><p>Slice the dataset to keep only properties with the following IDs, in that order: <code class="docutils literal notranslate"><span class="pre">38520175</span></code>,  <code class="docutils literal notranslate"><span class="pre">619716</span></code>, and <code class="docutils literal notranslate"><span class="pre">37847454</span></code></p></li>
+<li><p>Extract the section of the dataset that includes the 50th to the 100th rows, and the <code class="docutils literal notranslate"><span class="pre">room_type</span></code> and <code class="docutils literal notranslate"><span class="pre">bedrooms</span></code> columns</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="conditional-queries">
+<h3>Conditional queries<a class="headerlink" href="#conditional-queries" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">loc</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Observatoire&quot;</span><span class="p">,</span> 
+       <span class="p">[</span><span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span><span class="p">]]</span>\
+  <span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>neighbourhood_cleansed</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Observatoire</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Observatoire</td>
+      <td>90.0</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Observatoire</td>
+      <td>150.0</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>Observatoire</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>Observatoire</td>
+      <td>140.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3109</td>
+      <td>Observatoire</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9952</td>
+      <td>Popincourt</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>10710</td>
+      <td>Élysée</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>11170</td>
+      <td>Panthéon</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11848</td>
+      <td>Popincourt</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&amp;</span> \
+       <span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;bathrooms&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">),</span>
+       <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12066</th>
+      <td>8876983</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>16.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>22964</th>
+      <td>18766792</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>17.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>24788</th>
+      <td>19819352</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>20.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>25798</th>
+      <td>20433587</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26048</th>
+      <td>20691340</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26108</th>
+      <td>20747725</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26121</th>
+      <td>20768013</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Conditional filters</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fltr</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;bathrooms&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">8</span>
+<span class="n">fltr</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    False
+1    False
+2    False
+3    False
+4    False
+Name: bathrooms, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="n">fltr</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12066</th>
+      <td>8876983</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>16.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>22964</th>
+      <td>18766792</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>17.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>24788</th>
+      <td>19819352</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>20.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>25798</th>
+      <td>20433587</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26048</th>
+      <td>20691340</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26108</th>
+      <td>20747725</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26121</th>
+      <td>20768013</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Concatenated queries</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&amp;</span> \
+       <span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;bathrooms&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">),</span>
+       <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12066</th>
+      <td>8876983</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>16.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>22964</th>
+      <td>18766792</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>17.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>24788</th>
+      <td>19819352</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>20.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>25798</th>
+      <td>20433587</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26048</th>
+      <td>20691340</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26108</th>
+      <td>20747725</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26121</th>
+      <td>20768013</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">|</span> \
+       <span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">),</span>
+       <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8149</th>
+      <td>6088687</td>
+      <td>Temple</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>8500.0</td>
+    </tr>
+    <tr>
+      <th>10113</th>
+      <td>7225849</td>
+      <td>Buttes-Montmartre</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>8</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>Real Bed</td>
+      <td>9379.0</td>
+    </tr>
+    <tr>
+      <th>11286</th>
+      <td>8093890</td>
+      <td>Passy</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>Real Bed</td>
+      <td>8721.0</td>
+    </tr>
+    <tr>
+      <th>25106</th>
+      <td>19974916</td>
+      <td>Buttes-Montmartre</td>
+      <td>Condominium</td>
+      <td>Entire home/apt</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>Real Bed</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>25558</th>
+      <td>20219162</td>
+      <td>Buttes-Chaumont</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>25676</th>
+      <td>20291987</td>
+      <td>Passy</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>Real Bed</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>25697</th>
+      <td>20313940</td>
+      <td>Temple</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>26899</th>
+      <td>21422028</td>
+      <td>Popincourt</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>3</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>Real Bed</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>32190</th>
+      <td>25448670</td>
+      <td>Vaugirard</td>
+      <td>Apartment</td>
+      <td>Entire home/apt</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>8576.0</td>
+    </tr>
+    <tr>
+      <th>35291</th>
+      <td>27608896</td>
+      <td>Observatoire</td>
+      <td>Apartment</td>
+      <td>Private room</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>Real Bed</td>
+      <td>9059.0</td>
+    </tr>
+    <tr>
+      <th>43961</th>
+      <td>34380017</td>
+      <td>Bourse</td>
+      <td>Serviced apartment</td>
+      <td>Hotel room</td>
+      <td>8</td>
+      <td>2.5</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>Real Bed</td>
+      <td>5150.0</td>
+    </tr>
+    <tr>
+      <th>46767</th>
+      <td>36019554</td>
+      <td>Louvre</td>
+      <td>Serviced apartment</td>
+      <td>Hotel room</td>
+      <td>8</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>Real Bed</td>
+      <td>8000.0</td>
+    </tr>
+    <tr>
+      <th>47574</th>
+      <td>36402651</td>
+      <td>Batignolles-Monceau</td>
+      <td>House</td>
+      <td>Entire home/apt</td>
+      <td>12</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>Real Bed</td>
+      <td>10000.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">query</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;neighbourhood_cleansed == &#39;Observatoire&#39;&quot;</span><span class="p">)</span>\
+  <span class="p">[[</span><span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span><span class="p">]]</span>\
+  <span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>neighbourhood_cleansed</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Observatoire</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Observatoire</td>
+      <td>90.0</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Observatoire</td>
+      <td>150.0</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>Observatoire</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>Observatoire</td>
+      <td>140.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Price &lt; 100&quot;</span><span class="p">)</span>\
+  <span class="p">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">]]</span>\
+  <span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3109</td>
+      <td>Observatoire</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9952</td>
+      <td>Popincourt</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>10710</td>
+      <td>Élysée</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>11170</td>
+      <td>Panthéon</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11848</td>
+      <td>Popincourt</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;(Price &lt; 100) &amp; (bathrooms &gt;= 8)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>neighbourhood_cleansed</th>
+      <th>property_type</th>
+      <th>room_type</th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>bed_type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12066</th>
+      <td>8876983</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>16.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>22964</th>
+      <td>18766792</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>17.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>24788</th>
+      <td>19819352</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>20.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>25798</th>
+      <td>20433587</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26048</th>
+      <td>20691340</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26108</th>
+      <td>20747725</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+    <tr>
+      <th>26121</th>
+      <td>20768013</td>
+      <td>Luxembourg</td>
+      <td>Boutique hotel</td>
+      <td>Private room</td>
+      <td>16</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>Real Bed</td>
+      <td>85.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="editing-tables">
+<h2>Editing tables<a class="headerlink" href="#editing-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Modifying single values</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;bed_type&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Pull-out Sofa&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;bed_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Pullout Sofa&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;bed_type&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Pullout Sofa&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Modifying blocks of values</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">neighbourhood_cleansed</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Observatoire&#39;, &#39;Hôtel-de-Ville&#39;, &#39;Opéra&#39;, &#39;Popincourt&#39;, &#39;Élysée&#39;,
+       &#39;Panthéon&#39;, &#39;Entrepôt&#39;, &#39;Buttes-Montmartre&#39;, &#39;Gobelins&#39;,
+       &#39;Buttes-Chaumont&#39;, &#39;Luxembourg&#39;, &#39;Louvre&#39;, &#39;Palais-Bourbon&#39;,
+       &#39;Reuilly&#39;, &#39;Bourse&#39;, &#39;Ménilmontant&#39;, &#39;Vaugirard&#39;,
+       &#39;Batignolles-Monceau&#39;, &#39;Temple&#39;, &#39;Passy&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Hôtel-de-Ville&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;City Council&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">neighbourhood_cleansed</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Observatoire&#39;, &#39;City Council&#39;, &#39;Opéra&#39;, &#39;Popincourt&#39;, &#39;Élysée&#39;,
+       &#39;Panthéon&#39;, &#39;Entrepôt&#39;, &#39;Buttes-Montmartre&#39;, &#39;Gobelins&#39;,
+       &#39;Buttes-Chaumont&#39;, &#39;Luxembourg&#39;, &#39;Louvre&#39;, &#39;Palais-Bourbon&#39;,
+       &#39;Reuilly&#39;, &#39;Bourse&#39;, &#39;Ménilmontant&#39;, &#39;Vaugirard&#39;,
+       &#39;Batignolles-Monceau&#39;, &#39;Temple&#39;, &#39;Passy&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Creating new columns and rows</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;more_beds_than_accomodates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;beds&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;accommodates&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong></p>
+<ul class="simple">
+<li><p>Find how many properties have more than ten bathrooms</p></li>
+<li><p>Can you rent an AirBnb in Paris with only one bed but three bedrooms?</p></li>
+<li><p>In which neighbourhoods can you rent an “Airbed”?</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="writing-data">
+<h2>Writing Data<a class="headerlink" href="#writing-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">db</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;to_&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;to_clipboard&#39;,
+ &#39;to_csv&#39;,
+ &#39;to_dict&#39;,
+ &#39;to_excel&#39;,
+ &#39;to_feather&#39;,
+ &#39;to_gbq&#39;,
+ &#39;to_hdf&#39;,
+ &#39;to_html&#39;,
+ &#39;to_json&#39;,
+ &#39;to_latex&#39;,
+ &#39;to_markdown&#39;,
+ &#39;to_numpy&#39;,
+ &#39;to_parquet&#39;,
+ &#39;to_period&#39;,
+ &#39;to_pickle&#39;,
+ &#39;to_records&#39;,
+ &#39;to_sql&#39;,
+ &#39;to_stata&#39;,
+ &#39;to_string&#39;,
+ &#39;to_timestamp&#39;,
+ &#39;to_xarray&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="further-resources">
+<h2>Further Resources<a class="headerlink" href="#further-resources" title="Permalink to this headline">¶</a></h2>
+<p>Similar introduction:</p>
+<blockquote>
+<div><p><a class="reference external" href="http://darribas.org/gds17/content/labs/lab_01.html">http://darribas.org/gds19/content/labs/lab_01.html</a></p>
+</div></blockquote>
+<p>More stuff on indices:</p>
+<blockquote>
+<div><p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/indexing.html">http://pandas.pydata.org/pandas-docs/stable/indexing.html</a></p>
+</div></blockquote>
+<p>And for the pros:</p>
+<blockquote>
+<div><p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/advanced.html">http://pandas.pydata.org/pandas-docs/stable/advanced.html</a></p>
+</div></blockquote>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="02-Computational_building_blocks.html" title="previous page">Computational building blocks</a>
+    <a class='right-next' id="next-link" href="04-Tabular_data_viz.html" title="next page">Visualising Tabular Data</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dani Arribas-Bel<br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Data Science Studio</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-6032674-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

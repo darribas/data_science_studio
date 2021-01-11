@@ -1,0 +1,1201 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supervised Learning &#8212; Data Science Studio</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Inference" href="08-Inference.html" />
+    <link rel="prev" title="Unsupervised Learning" href="06-Unsupervised_learning.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Science Studio</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../home.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Course Specs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#data">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#further-materials">
+   Further materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../assessment.html">
+   Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../infrastructure.html">
+   Infrastructure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../z_bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction.html">
+   “Data, data, data”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Computational_building_blocks.html">
+   Computational building blocks
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data Wrangling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Tabular_data.html">
+   Reading &amp; Manipulating Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Tabular_data_viz.html">
+   Visualising Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Tabular_advanced.html">
+   Advanced Tabular Manipulation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Unsupervised_learning.html">
+   Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Inference.html">
+   Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Overfitting_cv.html">
+   Overfitting &amp; Cross-Validation
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/notebooks/07-Supervised_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/darribas/data_science_studio/master?urlpath=tree/content/notebooks/07-Supervised_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#to-do-before">
+   To do before…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#action">
+   Action!
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-regression">
+     Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-econometrician-way">
+       The Econometrician way
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-machine-learner-way">
+       The Machine Learner way
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tree-based-approaches-the-random-forest">
+     Tree-based approaches: the Random Forest
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-example-with-categorical-outcomes">
+     An example with categorical outcomes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="supervised-learning">
+<h1>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="to-do-before">
+<span id="supervised-async"></span><h2>To do before…<a class="headerlink" href="#to-do-before" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../overview.html#delivery-modes"><span class="std std-ref">💻 [Async]</span></a></p>
+<p>Here is a taster for supervised learning to make you want more, which we’ll do on the live session. To prepare for this part of the course (which includes the <a class="reference internal" href="#supervised-sync"><span class="std std-ref">section below</span></a>, as well as the one on <a class="reference internal" href="08-Inference.html"><span class="doc std std-doc">inference</span></a> and <a class="reference internal" href="09-Overfitting_cv.html"><span class="doc std std-doc">overfitting/CV</span></a>), here are two tasks you will need to complete <em>before</em> the live session:</p>
+<p><em>First</em>, watch the following clip which sets up the scene for what will be to come</p>
+<div class="sidebar">
+<p class="sidebar-title">Slides</p>
+<p>The slides used in the clip are available at:</p>
+<ul class="simple">
+<li><p><a href="../slides/07-Supervised_learning.html"> <code class="docutils literal notranslate"><span class="pre">[HTML]</span></code> </a></p></li>
+<li><p><a href="../slides/07-Supervised_learning.pdf"> <code class="docutils literal notranslate"><span class="pre">[PDF]</span></code> </a></p></li>
+</ul>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="300"
+    src="https://liverpool.instructuremedia.com/embed/45750aa3-f777-4431-8752-019f9f431eb7"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<p><em>Second</em>, read the following two articles, all mentioned in the clip:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>An open access, PDF version is available <a class="reference external" href="https://projecteuclid.org/euclid.ss/1009213726">here</a></p>
+</div>
+<ul class="simple">
+<li><p><em>Statistical Modeling: the Two Cultures</em> (<a class="bibtex reference internal" href="../z_bibliography.html#breiman2001statistical" id="id1">[B+01]</a>)</p></li>
+</ul>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>An open access, PDF version is available <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/jep.31.2.87">here</a></p>
+</div>
+<ul class="simple">
+<li><p><em>Machine Learning</em>: An Applied Econometric Approach* (<a class="bibtex reference internal" href="../z_bibliography.html#mullainathan2017machine" id="id2">[MS17]</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="action">
+<span id="supervised-sync"></span><h2>Action!<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../overview.html#delivery-modes"><span class="std std-ref">👨‍🏫 [Sync]</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="linear-regression">
+<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+P_i = \alpha + \beta X + \epsilon
+\]</div>
+<div class="section" id="the-econometrician-way">
+<h4>The Econometrician way<a class="headerlink" href="#the-econometrician-way" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">sm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Raw price</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="s2">&quot;Price ~ bathrooms + bedrooms + room_type&quot;</span>
+<span class="n">lm_raw</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>\
+       <span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">lm_raw</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;statsmodels.regression.linear_model.RegressionResultsWrapper at 0x7f458e6d1cd0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_raw</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>          <td>Price</td>      <th>  R-squared:         </th>  <td>   0.103</td>  
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th>  <td>   0.103</td>  
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th>  <td>   1151.</td>  
+</tr>
+<tr>
+  <th>Date:</th>             <td>Thu, 07 Jan 2021</td> <th>  Prob (F-statistic):</th>   <td>  0.00</td>   
+</tr>
+<tr>
+  <th>Time:</th>                 <td>17:24:33</td>     <th>  Log-Likelihood:    </th> <td>-3.2312e+05</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td> 50280</td>      <th>  AIC:               </th>  <td>6.462e+05</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td> 50274</td>      <th>  BIC:               </th>  <td>6.463e+05</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     5</td>      <th>                     </th>      <td> </td>     
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>      <td> </td>     
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+              <td></td>                 <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>                 <td>   69.3589</td> <td>    1.295</td> <td>   53.573</td> <td> 0.000</td> <td>   66.821</td> <td>   71.896</td>
+</tr>
+<tr>
+  <th>room_type[T.Hotel room]</th>   <td>  148.7074</td> <td>    4.779</td> <td>   31.120</td> <td> 0.000</td> <td>  139.341</td> <td>  158.073</td>
+</tr>
+<tr>
+  <th>room_type[T.Private room]</th> <td>  -51.5793</td> <td>    2.202</td> <td>  -23.425</td> <td> 0.000</td> <td>  -55.895</td> <td>  -47.264</td>
+</tr>
+<tr>
+  <th>room_type[T.Shared room]</th>  <td>  -71.5010</td> <td>    8.692</td> <td>   -8.226</td> <td> 0.000</td> <td>  -88.537</td> <td>  -54.465</td>
+</tr>
+<tr>
+  <th>bathrooms</th>                 <td>   -2.4081</td> <td>    1.367</td> <td>   -1.762</td> <td> 0.078</td> <td>   -5.087</td> <td>    0.271</td>
+</tr>
+<tr>
+  <th>bedrooms</th>                  <td>   43.3410</td> <td>    0.939</td> <td>   46.174</td> <td> 0.000</td> <td>   41.501</td> <td>   45.181</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>135133.909</td> <th>  Durbin-Watson:     </th>    <td>   1.923</td>   
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>   <td> 0.000</td>   <th>  Jarque-Bera (JB):  </th> <td>6632879884.203</td>
+</tr>
+<tr>
+  <th>Skew:</th>            <td>32.680</td>   <th>  Prob(JB):          </th>    <td>    0.00</td>   
+</tr>
+<tr>
+  <th>Kurtosis:</th>       <td>1781.140</td>  <th>  Cond. No.          </th>    <td>    27.2</td>   
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<p>Now, <span class="math notranslate nohighlight">\(Price\)</span> is rather skewed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">Price</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/07-Supervised_learning_14_0.png" src="../../_images/07-Supervised_learning_14_0.png" />
+</div>
+</div>
+<p>We could take the log to try to obtain a better fit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="s2">&quot;np.log1p(Price) ~ bathrooms + bedrooms + room_type&quot;</span>
+<span class="n">lm_log</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>\
+       <span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">lm_log</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;statsmodels.regression.linear_model.RegressionResultsWrapper at 0x7f458e1484c0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_log</span><span class="o">.</span><span class="n">rsquared</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31515872008420753
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_raw</span><span class="o">.</span><span class="n">rsquared</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10269412705703151
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>That ☝️ is <em>inference</em> though. We’re here to “machine learn”!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get predictions</span>
+<span class="n">yp_raw</span> <span class="o">=</span> <span class="n">lm_raw</span><span class="o">.</span><span class="n">fittedvalues</span>
+<span class="n">yp_raw</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     66.950833
+1     66.950833
+2    153.632865
+3    110.291849
+4    110.291849
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_raw</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s2">&quot;bathrooms&quot;</span><span class="p">,</span> 
+                   <span class="s2">&quot;bedrooms&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;room_type&quot;</span>
+                  <span class="p">]])</span>\
+      <span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     66.950833
+1     66.950833
+2    153.632865
+3    110.291849
+4    110.291849
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-machine-learner-way">
+<h4>The Machine Learner way<a class="headerlink" href="#the-machine-learner-way" title="Permalink to this headline">¶</a></h4>
+<p>We need to:</p>
+<ul class="simple">
+<li><p>Get the dummies ourselves first</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">room_type_ds</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;room_type&quot;</span><span class="p">])</span>
+<span class="n">room_type_ds</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Entire home/apt</th>
+      <th>Hotel room</th>
+      <th>Private room</th>
+      <th>Shared room</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Prep <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">db</span><span class="p">[[</span><span class="s2">&quot;bathrooms&quot;</span><span class="p">,</span> <span class="s2">&quot;bedrooms&quot;</span><span class="p">]],</span>
+                   <span class="n">room_type_ds</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Entire home/apt&quot;</span><span class="p">,</span>
+                                     <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                  <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                 <span class="p">)</span>
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>Hotel room</th>
+      <th>Private room</th>
+      <th>Shared room</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Set up a model</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Train the model (see the use of <code class="docutils literal notranslate"><span class="pre">fit</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression()
+</pre></div>
+</div>
+</div>
+</div>
+<p>And voila, we have our results!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">regressor</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span>
+              <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+             <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bathrooms        -2.408064
+bedrooms         43.341016
+Hotel room      148.707387
+Private room    -51.579347
+Shared room     -71.501010
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regressor</span><span class="o">.</span><span class="n">intercept_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>69.35889717336228
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_raw</span><span class="o">.</span><span class="n">params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intercept                     69.358897
+room_type[T.Hotel room]      148.707387
+room_type[T.Private room]    -51.579347
+room_type[T.Shared room]     -71.501010
+bathrooms                     -2.408064
+bedrooms                      43.341016
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tree-based-approaches-the-random-forest">
+<h3>Tree-based approaches: the Random Forest<a class="headerlink" href="#tree-based-approaches-the-random-forest" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Very similar API (as throughout <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>). Two parameters to set (see <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#random-forest-parameters">here</a> for guidance):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_raw</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                               <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span>
+                              <span class="p">)</span>
+
+<span class="o">%</span><span class="k">time</span> rf_raw.fit(X, db[&quot;Price&quot;])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 750 ms, sys: 0 ns, total: 750 ms
+Wall time: 749 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForestRegressor(max_features=None)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To recover the predictions, we need to rely on <code class="docutils literal notranslate"><span class="pre">predict</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_raw_lbls</span> <span class="o">=</span> <span class="n">rf_raw</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">rf_raw_lbls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 71.98778067,  71.98778067, 140.74061093, ...,  93.62649936,
+        71.98778067,  93.62649936])
+</pre></div>
+</div>
+</div>
+</div>
+<p>For completeness, let’s quickly fit a Random Forest on the log of price:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_log</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                               <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span>
+                              <span class="p">)</span>
+
+<span class="o">%</span><span class="k">time</span> rf_log.fit(X, np.log1p(db[&quot;Price&quot;]))
+
+<span class="n">rf_log_lbls</span> <span class="o">=</span> <span class="n">rf_log</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 590 ms, sys: 0 ns, total: 590 ms
+Wall time: 589 ms
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong></p>
+<ul class="simple">
+<li><p>Train a random forest on the price using the number of beds and the property type instead</p></li>
+</ul>
+<hr class="docutils" />
+<p>Before we move on, let’s record all the predictions in a single table for convenience:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;LM-Raw&quot;</span><span class="p">:</span> <span class="n">lm_raw</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span>
+                        <span class="s2">&quot;LM-Log&quot;</span><span class="p">:</span> <span class="n">lm_log</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span>
+                        <span class="s2">&quot;RF-Raw&quot;</span><span class="p">:</span> <span class="n">rf_raw_lbls</span><span class="p">,</span>
+                        <span class="s2">&quot;RF-Log&quot;</span><span class="p">:</span> <span class="n">rf_log_lbls</span><span class="p">,</span>
+                        <span class="s2">&quot;Truth&quot;</span><span class="p">:</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span>
+                       <span class="p">})</span>
+<span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LM-Raw</th>
+      <th>LM-Log</th>
+      <th>RF-Raw</th>
+      <th>RF-Log</th>
+      <th>Truth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>66.950833</td>
+      <td>4.198030</td>
+      <td>71.987781</td>
+      <td>4.181397</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>66.950833</td>
+      <td>4.198030</td>
+      <td>71.987781</td>
+      <td>4.181397</td>
+      <td>115.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>153.632865</td>
+      <td>4.850742</td>
+      <td>140.740611</td>
+      <td>4.817468</td>
+      <td>119.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>110.291849</td>
+      <td>4.524386</td>
+      <td>93.626499</td>
+      <td>4.444683</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>110.291849</td>
+      <td>4.524386</td>
+      <td>93.626499</td>
+      <td>4.444683</td>
+      <td>75.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And write it out to a file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;../data/lm_results.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="an-example-with-categorical-outcomes">
+<h3>An example with categorical outcomes<a class="headerlink" href="#an-example-with-categorical-outcomes" title="Permalink to this headline">¶</a></h3>
+<p>Let’s bring back the classification we did in the previous session:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k5_pca</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;../data/k5_pca.parquet&quot;</span><span class="p">)</span>\
+               <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">k5_pca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>k5_pca</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now we might conceive cases where we want to build a model to predict these classes based on some house characteristics. To illustrate it, let’s consider the same variables as above. In this case, however, we want a <em>classifier</em> rather than a <em>regressor</em>, as the response is categorical.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>But the training is very similar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                    <span class="n">max_features</span><span class="o">=</span><span class="s2">&quot;sqrt&quot;</span>
+                                   <span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k5_pca</span><span class="p">[</span><span class="s2">&quot;k5_pca&quot;</span><span class="p">])</span>
+
+<span class="n">pred_lbls</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+                          <span class="n">index</span><span class="o">=</span><span class="n">k5_pca</span><span class="o">.</span><span class="n">index</span>
+                         <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.23 s, sys: 0 ns, total: 1.23 s
+Wall time: 1.23 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_res</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Truth&quot;</span><span class="p">:</span> <span class="n">k5_pca</span><span class="p">[</span><span class="s2">&quot;k5_pca&quot;</span><span class="p">],</span>
+                              <span class="s2">&quot;Predicted&quot;</span><span class="p">:</span> <span class="n">pred_lbls</span>
+                             <span class="p">}</span>
+                            <span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">Categorical</span><span class="p">)</span>
+<span class="n">class_res</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Truth</th>
+      <th>Predicted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>50280</td>
+      <td>50280</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>22773</td>
+      <td>49801</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="06-Unsupervised_learning.html" title="previous page">Unsupervised Learning</a>
+    <a class='right-next' id="next-link" href="08-Inference.html" title="next page">Inference</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dani Arribas-Bel<br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Data Science Studio</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-6032674-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

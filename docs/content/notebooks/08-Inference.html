@@ -1,0 +1,1469 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inference &#8212; Data Science Studio</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Overfitting &amp; Cross-Validation" href="09-Overfitting_cv.html" />
+    <link rel="prev" title="Supervised Learning" href="07-Supervised_learning.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Science Studio</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../home.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Course Specs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#data">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#further-materials">
+   Further materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../assessment.html">
+   Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../infrastructure.html">
+   Infrastructure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../z_bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction.html">
+   “Data, data, data”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Computational_building_blocks.html">
+   Computational building blocks
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data Wrangling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Tabular_data.html">
+   Reading &amp; Manipulating Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Tabular_data_viz.html">
+   Visualising Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Tabular_advanced.html">
+   Advanced Tabular Manipulation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Unsupervised_learning.html">
+   Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Supervised_learning.html">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Overfitting_cv.html">
+   Overfitting &amp; Cross-Validation
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/notebooks/08-Inference.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/darribas/data_science_studio/master?urlpath=tree/content/notebooks/08-Inference.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#baseline-model">
+   Baseline model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predictive-checking">
+   Predictive checking
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inferential-vs-predictive-uncertainty">
+   Inferential Vs Predictive uncertainty
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#point-predictive-simulation">
+     Point predictive simulation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-data">
+     New data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-performance">
+   Model performance
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="inference">
+<h1>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../overview.html#delivery-modes"><span class="std std-ref">👨‍🏫 [Sync]</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">scale</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/paris_abb.csv.zip&#39;</span><span class="p">)</span>
+<span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">])</span>
+<span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 50280 entries, 0 to 50279
+Data columns (total 11 columns):
+ #   Column                  Non-Null Count  Dtype  
+---  ------                  --------------  -----  
+ 0   id                      50280 non-null  int64  
+ 1   neighbourhood_cleansed  50280 non-null  object 
+ 2   property_type           50280 non-null  object 
+ 3   room_type               50280 non-null  object 
+ 4   accommodates            50280 non-null  int64  
+ 5   bathrooms               50280 non-null  float64
+ 6   bedrooms                50280 non-null  float64
+ 7   beds                    50280 non-null  float64
+ 8   bed_type                50280 non-null  object 
+ 9   Price                   50280 non-null  float64
+ 10  l_price                 50280 non-null  float64
+dtypes: float64(5), int64(2), object(4)
+memory usage: 4.2+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="baseline-model">
+<h2>Baseline model<a class="headerlink" href="#baseline-model" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\log(P) = \alpha + X \beta + \epsilon
+\]</div>
+<p><span class="math notranslate nohighlight">\(X\)</span>:</p>
+<ul class="simple">
+<li><p>Bathrooms</p></li>
+<li><p>Bedrooms</p></li>
+<li><p>Beds</p></li>
+<li><p>Room type</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;l_price ~ bedrooms + bathrooms + beds&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>l_price</td>     <th>  R-squared:         </th> <td>   0.245</td> 
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.245</td> 
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   5433.</td> 
+</tr>
+<tr>
+  <th>Date:</th>             <td>Thu, 07 Jan 2021</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td>  
+</tr>
+<tr>
+  <th>Time:</th>                 <td>17:25:24</td>     <th>  Log-Likelihood:    </th> <td> -38592.</td> 
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td> 50280</td>      <th>  AIC:               </th> <td>7.719e+04</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td> 50276</td>      <th>  BIC:               </th> <td>7.723e+04</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     3</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>    4.1806</td> <td>    0.005</td> <td>  852.126</td> <td> 0.000</td> <td>    4.171</td> <td>    4.190</td>
+</tr>
+<tr>
+  <th>bedrooms</th>  <td>    0.2253</td> <td>    0.004</td> <td>   57.760</td> <td> 0.000</td> <td>    0.218</td> <td>    0.233</td>
+</tr>
+<tr>
+  <th>bathrooms</th> <td>   -0.1544</td> <td>    0.005</td> <td>  -32.373</td> <td> 0.000</td> <td>   -0.164</td> <td>   -0.145</td>
+</tr>
+<tr>
+  <th>beds</th>      <td>    0.1398</td> <td>    0.003</td> <td>   50.554</td> <td> 0.000</td> <td>    0.134</td> <td>    0.145</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>11384.882</td> <th>  Durbin-Watson:     </th>  <td>   1.846</td> 
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>  <td> 0.000</td>   <th>  Jarque-Bera (JB):  </th> <td>585415.122</td>
+</tr>
+<tr>
+  <th>Skew:</th>           <td>-0.096</td>   <th>  Prob(JB):          </th>  <td>    0.00</td> 
+</tr>
+<tr>
+  <th>Kurtosis:</th>       <td>19.715</td>   <th>  Cond. No.          </th>  <td>    7.94</td> 
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<p>To note:</p>
+<ul class="simple">
+<li><p>Decent <span class="math notranslate nohighlight">\(R^2\)</span> (although that’s not holy truth)</p></li>
+<li><p>Every variable significant and related as expected</p></li>
+<li><p>Interpret coefficients</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bedrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;bathrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;beds&#39;</span><span class="p">]</span>
+<span class="n">scX</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scale</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">cols</span><span class="p">]),</span>
+                       <span class="n">index</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                       <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">scX</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bedrooms</th>
+      <th>bathrooms</th>
+      <th>beds</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>5.028000e+04</td>
+      <td>5.028000e+04</td>
+      <td>5.028000e+04</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.748138e-14</td>
+      <td>1.621070e-15</td>
+      <td>-5.895298e-15</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.000010e+00</td>
+      <td>1.000010e+00</td>
+      <td>1.000010e+00</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-1.076738e+00</td>
+      <td>-1.625116e+00</td>
+      <td>-1.429042e+00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-7.772733e-02</td>
+      <td>-1.702805e-01</td>
+      <td>-5.706025e-01</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>-7.772733e-02</td>
+      <td>-1.702805e-01</td>
+      <td>-5.706025e-01</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>-7.772733e-02</td>
+      <td>-1.702805e-01</td>
+      <td>2.878366e-01</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>4.887380e+01</td>
+      <td>7.111664e+01</td>
+      <td>4.149292e+01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;l_price ~ bedrooms + bathrooms + beds&#39;</span><span class="p">,</span> 
+            <span class="n">data</span><span class="o">=</span><span class="n">scX</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">]))</span>\
+       <span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>l_price</td>     <th>  R-squared:         </th> <td>   0.245</td> 
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.245</td> 
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   5433.</td> 
+</tr>
+<tr>
+  <th>Date:</th>             <td>Thu, 07 Jan 2021</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td>  
+</tr>
+<tr>
+  <th>Time:</th>                 <td>17:25:24</td>     <th>  Log-Likelihood:    </th> <td> -38592.</td> 
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td> 50280</td>      <th>  AIC:               </th> <td>7.719e+04</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td> 50276</td>      <th>  BIC:               </th> <td>7.723e+04</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     3</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>    4.4837</td> <td>    0.002</td> <td> 1928.462</td> <td> 0.000</td> <td>    4.479</td> <td>    4.488</td>
+</tr>
+<tr>
+  <th>bedrooms</th>  <td>    0.2255</td> <td>    0.004</td> <td>   57.760</td> <td> 0.000</td> <td>    0.218</td> <td>    0.233</td>
+</tr>
+<tr>
+  <th>bathrooms</th> <td>   -0.1061</td> <td>    0.003</td> <td>  -32.373</td> <td> 0.000</td> <td>   -0.113</td> <td>   -0.100</td>
+</tr>
+<tr>
+  <th>beds</th>      <td>    0.1628</td> <td>    0.003</td> <td>   50.554</td> <td> 0.000</td> <td>    0.156</td> <td>    0.169</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>11384.882</td> <th>  Durbin-Watson:     </th>  <td>   1.846</td> 
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>  <td> 0.000</td>   <th>  Jarque-Bera (JB):  </th> <td>585415.122</td>
+</tr>
+<tr>
+  <th>Skew:</th>           <td>-0.096</td>   <th>  Prob(JB):          </th>  <td>    0.00</td> 
+</tr>
+<tr>
+  <th>Kurtosis:</th>       <td>19.715</td>   <th>  Cond. No.          </th>  <td>    3.11</td> 
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<p>Let’s bring both sets of results together:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Baseline&quot;</span><span class="p">:</span> <span class="n">m1</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+                  <span class="s2">&quot;X Std.&quot;</span><span class="p">:</span> <span class="n">m2</span><span class="o">.</span><span class="n">params</span>
+                 <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Baseline</th>
+      <th>X Std.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Intercept</th>
+      <td>4.180599</td>
+      <td>4.483657</td>
+    </tr>
+    <tr>
+      <th>bedrooms</th>
+      <td>0.225325</td>
+      <td>0.225548</td>
+    </tr>
+    <tr>
+      <th>bathrooms</th>
+      <td>-0.154385</td>
+      <td>-0.106119</td>
+    </tr>
+    <tr>
+      <th>beds</th>
+      <td>0.139759</td>
+      <td>0.162806</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To note:</p>
+<p>How does interpretation of the coefficients change?</p>
+<ul class="simple">
+<li><p>Meaning of intecept when <span class="math notranslate nohighlight">\(X\)</span> is demeanded</p></li>
+<li><p>Units in which <span class="math notranslate nohighlight">\(\beta\)</span> are interpreted</p></li>
+</ul>
+</div>
+<div class="section" id="predictive-checking">
+<h2>Predictive checking<a class="headerlink" href="#predictive-checking" title="Permalink to this headline">¶</a></h2>
+<p>Is the model picking up the overall “shape of data”?</p>
+<ul class="simple">
+<li><p>Important to know how much we should trust our inferences</p></li>
+<li><p>Crucial if we want to use the model to predict!</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;l_price&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/08-Inference_12_1.png" src="../../_images/08-Inference_12_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/08-Inference_13_1.png" src="../../_images/08-Inference_13_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\hat</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08-Inference_14_0.png" src="../../_images/08-Inference_14_0.png" />
+</div>
+</div>
+<p>To note:</p>
+<ul class="simple">
+<li><p>Not a terrible start</p></li>
+<li><p>How could we improve it?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;l_price ~ bedrooms + bathrooms + beds + room_type&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">m3</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>l_price</td>     <th>  R-squared:         </th> <td>   0.340</td> 
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.340</td> 
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   4314.</td> 
+</tr>
+<tr>
+  <th>Date:</th>             <td>Thu, 07 Jan 2021</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td>  
+</tr>
+<tr>
+  <th>Time:</th>                 <td>17:25:25</td>     <th>  Log-Likelihood:    </th> <td> -35210.</td> 
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td> 50280</td>      <th>  AIC:               </th> <td>7.043e+04</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td> 50273</td>      <th>  BIC:               </th> <td>7.050e+04</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     6</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+              <td></td>                 <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>                 <td>    4.2417</td> <td>    0.005</td> <td>  899.941</td> <td> 0.000</td> <td>    4.232</td> <td>    4.251</td>
+</tr>
+<tr>
+  <th>room_type[T.Hotel room]</th>   <td>    0.5548</td> <td>    0.016</td> <td>   35.619</td> <td> 0.000</td> <td>    0.524</td> <td>    0.585</td>
+</tr>
+<tr>
+  <th>room_type[T.Private room]</th> <td>   -0.4862</td> <td>    0.007</td> <td>  -66.604</td> <td> 0.000</td> <td>   -0.501</td> <td>   -0.472</td>
+</tr>
+<tr>
+  <th>room_type[T.Shared room]</th>  <td>   -1.0320</td> <td>    0.028</td> <td>  -36.320</td> <td> 0.000</td> <td>   -1.088</td> <td>   -0.976</td>
+</tr>
+<tr>
+  <th>bedrooms</th>                  <td>    0.2388</td> <td>    0.004</td> <td>   65.134</td> <td> 0.000</td> <td>    0.232</td> <td>    0.246</td>
+</tr>
+<tr>
+  <th>bathrooms</th>                 <td>   -0.1440</td> <td>    0.004</td> <td>  -32.285</td> <td> 0.000</td> <td>   -0.153</td> <td>   -0.135</td>
+</tr>
+<tr>
+  <th>beds</th>                      <td>    0.1144</td> <td>    0.003</td> <td>   43.386</td> <td> 0.000</td> <td>    0.109</td> <td>    0.120</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>11695.728</td> <th>  Durbin-Watson:     </th>  <td>   1.878</td> 
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>  <td> 0.000</td>   <th>  Jarque-Bera (JB):  </th> <td>680804.847</td>
+</tr>
+<tr>
+  <th>Skew:</th>           <td>-0.027</td>   <th>  Prob(JB):          </th>  <td>    0.00</td> 
+</tr>
+<tr>
+  <th>Kurtosis:</th>       <td>21.027</td>   <th>  Cond. No.          </th>  <td>    37.2</td> 
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\hat</span><span class="si">{y}</span><span class="s1">_1$&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">m3</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\hat</span><span class="si">{y}</span><span class="s1">_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08-Inference_17_0.png" src="../../_images/08-Inference_17_0.png" />
+</div>
+</div>
+<p>To note:</p>
+<ul class="simple">
+<li><p>This is better!</p></li>
+<li><p>But these are only point predictions. Sometimes that’s good enough.</p></li>
+<li><p>Usually however, we want a model to capture the underlying process instead of the particular realisation observed (ie. dataset).</p></li>
+<li><p>Then we need to think about the uncertainty embedded in the model we are estimating</p></li>
+</ul>
+</div>
+<div class="section" id="inferential-vs-predictive-uncertainty">
+<h2>Inferential Vs Predictive uncertainty<a class="headerlink" href="#inferential-vs-predictive-uncertainty" title="Permalink to this headline">¶</a></h2>
+<p>[See more in Chapter 7.2 of <a class="reference external" href="http://www.stat.columbia.edu/~gelman/arm/">Gelman &amp; Hill 2006</a> 👌💯]</p>
+<ul class="simple">
+<li><p>Two types of uncertainty in our model</p>
+<ul>
+<li><p>Predictive (<span class="math notranslate nohighlight">\(\epsilon\)</span>)</p></li>
+<li><p>Inferential (<span class="math notranslate nohighlight">\(\beta\)</span>)</p></li>
+</ul>
+</li>
+<li><p>Both affect the final predictions we make</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../figs/abb_room.png&quot;</span><span class="p">,</span> <span class="n">retina</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08-Inference_20_0.png" src="../../_images/08-Inference_20_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">room</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">35607436</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">room</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>45979</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>id</th>
+      <td>35607436</td>
+    </tr>
+    <tr>
+      <th>neighbourhood_cleansed</th>
+      <td>Luxembourg</td>
+    </tr>
+    <tr>
+      <th>property_type</th>
+      <td>Apartment</td>
+    </tr>
+    <tr>
+      <th>room_type</th>
+      <td>Entire home/apt</td>
+    </tr>
+    <tr>
+      <th>accommodates</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>bathrooms</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>bedrooms</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>beds</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>bed_type</th>
+      <td>Real Bed</td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>l_price</th>
+      <td>4.51086</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rid</span> <span class="o">=</span> <span class="n">room</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rid</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id                               35607436
+neighbourhood_cleansed         Luxembourg
+property_type                   Apartment
+room_type                 Entire home/apt
+accommodates                            5
+bathrooms                               1
+bedrooms                                2
+beds                                    3
+bed_type                         Real Bed
+Price                                  90
+l_price                           4.51086
+Name: 45979, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+\hat{\log(P_i)} = \alpha + \sum_k \beta_k * X_k
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rid</span><span class="p">,</span> <span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">cols</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.896141184855212
+</pre></div>
+</div>
+</div>
+</div>
+<p>To note:</p>
+<ul class="simple">
+<li><p>What does <code class="docutils literal notranslate"><span class="pre">dot</span></code> do?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">[</span><span class="n">rid</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.896141184855212
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="point-predictive-simulation">
+<h3>Point predictive simulation<a class="headerlink" href="#point-predictive-simulation" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="c1"># Parameters</span>
+<span class="c1">## Number of simulations</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="c1"># Pull out characteristics for house of interest</span>
+<span class="n">x_i</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rid</span><span class="p">,</span> <span class="n">cols</span><span class="p">]</span>
+<span class="c1"># Specify model engine</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">m1</span>
+
+<span class="c1"># Place-holder</span>
+<span class="n">sims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="c1"># Loop over number of replications</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="c1"># Get a random draw of betas</span>
+    <span class="n">rbs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">bse</span><span class="p">)</span>
+    <span class="c1"># Get a random draw of epsilon</span>
+    <span class="n">re</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+    <span class="c1"># Obtain point estimate</span>
+    <span class="n">y_hr</span> <span class="o">=</span> <span class="n">rbs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">rbs</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="n">re</span>
+    <span class="c1"># Store estimate</span>
+    <span class="n">sims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 637 ms, sys: 35.1 ms, total: 672 ms
+Wall time: 632 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">sims</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simulation&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rid</span><span class="p">,</span> <span class="s1">&#39;l_price&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">[</span><span class="n">rid</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+
+<span class="n">lo</span><span class="p">,</span> <span class="n">up</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>\
+               <span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>\
+               <span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.025</span> <span class="o">*</span> <span class="n">r</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.975</span> <span class="o">*</span> <span class="n">r</span><span class="p">))]]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08-Inference_29_0.png" src="../../_images/08-Inference_29_0.png" />
+</div>
+</div>
+<p>To note:</p>
+<ul class="simple">
+<li><p>Intuition of the simulation</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, deconstructed</p></li>
+<li><p>The graph, bit by bit</p></li>
+<li><p>If we did this for every observation, we’d expect 95% to be within the 95% bands</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Exercise</strong></p>
+<p>Explore with the code above and try to generate similar plots for:</p>
+<ul class="simple">
+<li><p>Different houses across locations and characteristics</p></li>
+<li><p>Different model</p></li>
+</ul>
+<p><strong>Exercise+</strong></p>
+<p>Recreate the analysis above for observation <code class="docutils literal notranslate"><span class="pre">5389821</span></code>. What happens? Why?</p>
+<hr class="docutils" />
+<p>Now, we could do this for <em><strong>all</strong></em> the observations and get a sense of the overall distribution to be expected</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="c1"># Parameters</span>
+<span class="c1">## Number of observations &amp; simulations</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="c1"># Specify model engine</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">m1</span>
+
+<span class="c1"># Place-holder (N, r)</span>
+<span class="n">sims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">))</span>
+<span class="c1"># Loop over number of replications</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="c1"># Get a random draw of betas</span>
+    <span class="n">rbs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">bse</span><span class="p">)</span>
+    <span class="c1"># Get a random draw of epsilon</span>
+    <span class="n">re</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+    <span class="c1"># Obtain point estimate</span>
+    <span class="n">y_hr</span> <span class="o">=</span> <span class="n">rbs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">cols</span><span class="p">],</span> <span class="n">rbs</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="n">re</span>
+    <span class="c1"># Store estimate</span>
+    <span class="n">sims</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.61 s, sys: 27.3 s, total: 32.9 s
+Wall time: 2.08 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">sims</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08-Inference_32_0.png" src="../../_images/08-Inference_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\hat</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">sims</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08-Inference_33_0.png" src="../../_images/08-Inference_33_0.png" />
+</div>
+</div>
+<p>To note:</p>
+<ul class="simple">
+<li><p>Black line contains <code class="docutils literal notranslate"><span class="pre">r</span></code> thin lines that collectively capture the uncertainty behind the model</p></li>
+</ul>
+</div>
+<div class="section" id="new-data">
+<h3>New data<a class="headerlink" href="#new-data" title="Permalink to this headline">¶</a></h3>
+<p>Imagine we are trying to figure out how much should we charge for a property we want to put on AirBnb.</p>
+<p>For example, let’s assume our property is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;bedrooms&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                     <span class="s1">&#39;bathrooms&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                     <span class="s1">&#39;beds&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="c1"># Parameters</span>
+<span class="c1">## Number of simulations</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="c1"># Pull out characteristics for house of interest</span>
+<span class="n">x_i</span> <span class="o">=</span> <span class="n">new</span>
+<span class="c1"># Specify model engine</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">m1</span>
+
+<span class="c1"># Place-holder</span>
+<span class="n">sims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="c1"># Loop over number of replications</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="c1"># Get a random draw of betas</span>
+    <span class="n">rbs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">bse</span><span class="p">)</span>
+    <span class="c1"># Get a random draw of epsilon</span>
+    <span class="n">re</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+    <span class="c1"># Obtain point estimate</span>
+    <span class="n">y_hr</span> <span class="o">=</span> <span class="n">rbs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">rbs</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="n">re</span>
+    <span class="c1"># Store estimate</span>
+    <span class="n">sims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 640 ms, sys: 4.53 ms, total: 644 ms
+Wall time: 643 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">sims</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simulation&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> \
+           <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+
+<span class="n">lo</span><span class="p">,</span> <span class="n">up</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>\
+               <span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>\
+               <span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.025</span> <span class="o">*</span> <span class="n">r</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.975</span> <span class="o">*</span> <span class="n">r</span><span class="p">))]]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08-Inference_38_0.png" src="../../_images/08-Inference_38_0.png" />
+</div>
+</div>
+<p><strong>[Pro]</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predictor</span><span class="p">(</span><span class="n">bedrooms</span><span class="p">,</span> <span class="n">bathrooms</span><span class="p">,</span> <span class="n">beds</span><span class="p">):</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;bedrooms&#39;</span><span class="p">:</span> <span class="n">bedrooms</span><span class="p">,</span>
+                         <span class="s1">&#39;bathrooms&#39;</span><span class="p">:</span> <span class="n">bathrooms</span><span class="p">,</span>
+                         <span class="s1">&#39;beds&#39;</span><span class="p">:</span> <span class="n">beds</span>
+                        <span class="p">})</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">x_i</span> <span class="o">=</span> <span class="n">new</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">m1</span>
+    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="c1"># Simulation</span>
+    <span class="n">sims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+        <span class="n">rbs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">bse</span><span class="p">)</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+        <span class="n">y_hr</span> <span class="o">=</span> <span class="n">rbs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">rbs</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="n">re</span>
+        <span class="n">sims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hr</span>
+    <span class="n">sims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)</span>    
+    <span class="c1"># Bands</span>
+    <span class="n">lo</span><span class="p">,</span> <span class="n">up</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>\
+                   <span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>\
+                   <span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.025</span> <span class="o">*</span> <span class="n">r</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.975</span> <span class="o">*</span> <span class="n">r</span><span class="p">))]]</span>
+    <span class="c1"># Setup&#39;n&#39;draw figure</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sims</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simulation&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;95% CI&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">#ax.set_xlim((0, 10))</span>
+    <span class="c1"># Dress up</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$/night&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">predictor</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08-Inference_40_0.png" src="../../_images/08-Inference_40_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You might have to run this to make interactives work</span>
+<span class="c1"># jupyter labextension install @jupyter-widgets/jupyterlab-manager</span>
+<span class="c1"># From https://ipywidgets.readthedocs.io/en/latest/user_install.html#installing-the-jupyterlab-extension</span>
+<span class="c1"># Then restart Jupyter Lab</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
+
+<span class="n">interact</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> 
+         <span class="n">bedrooms</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span> \
+         <span class="n">bathrooms</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span> \
+         <span class="n">beds</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+        <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "50914f2ddcf640c4838ebb8db3546d65", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</div>
+</div>
+<div class="section" id="model-performance">
+<h2>Model performance<a class="headerlink" href="#model-performance" title="Permalink to this headline">¶</a></h2>
+<p>To note:</p>
+<ul class="simple">
+<li><p>Switch from inference to prediction</p></li>
+<li><p>Overall idea of summarising model performance</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2\)</span></p></li>
+<li><p>Error-based measures</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># R^2</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;Baseline&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">r2_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span>
+                                                 <span class="n">m1</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">),</span>
+                    <span class="s1">&#39;Augmented&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">r2_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span>
+                                                  <span class="n">m3</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)})</span>
+<span class="n">r2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Baseline     0.244826
+Augmented    0.339876
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MSE</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;Baseline&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span>
+                                                            <span class="n">m1</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">),</span>
+                     <span class="s1">&#39;Augmented&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span>
+                                                             <span class="n">m3</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)})</span>
+<span class="n">mse</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Baseline     0.271771
+Augmented    0.237565
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MAE</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;Baseline&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span>
+                                                             <span class="n">m1</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">),</span>
+                     <span class="s1">&#39;Augmented&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">],</span>
+                                                              <span class="n">m3</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)})</span>
+<span class="n">mae</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Baseline     0.379119
+Augmented    0.357287
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># All</span>
+<span class="n">perf</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;MAE&#39;</span><span class="p">:</span> <span class="n">mae</span><span class="p">,</span>
+                         <span class="s1">&#39;MSE&#39;</span><span class="p">:</span> <span class="n">mse</span><span class="p">,</span>
+                         <span class="s1">&#39;R^2&#39;</span><span class="p">:</span> <span class="n">r2</span><span class="p">})</span>
+<span class="n">perf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MAE</th>
+      <th>MSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Baseline</th>
+      <td>0.379119</td>
+      <td>0.271771</td>
+      <td>0.244826</td>
+    </tr>
+    <tr>
+      <th>Augmented</th>
+      <td>0.357287</td>
+      <td>0.237565</td>
+      <td>0.339876</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="07-Supervised_learning.html" title="previous page">Supervised Learning</a>
+    <a class='right-next' id="next-link" href="09-Overfitting_cv.html" title="next page">Overfitting &amp; Cross-Validation</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dani Arribas-Bel<br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Data Science Studio</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-6032674-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

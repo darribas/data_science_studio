@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visualising Tabular Data &#8212; Data Science Studio</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Advanced Tabular Manipulation" href="05-Tabular_advanced.html" />
+    <link rel="prev" title="Reading &amp; Manipulating Tabular Data" href="03-Tabular_data.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Science Studio</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../home.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Course Specs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#data">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#further-materials">
+   Further materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../assessment.html">
+   Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../infrastructure.html">
+   Infrastructure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../z_bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction.html">
+   “Data, data, data”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Computational_building_blocks.html">
+   Computational building blocks
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data Wrangling
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Tabular_data.html">
+   Reading &amp; Manipulating Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Visualising Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Tabular_advanced.html">
+   Advanced Tabular Manipulation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Unsupervised_learning.html">
+   Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Supervised_learning.html">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Inference.html">
+   Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Overfitting_cv.html">
+   Overfitting &amp; Cross-Validation
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/notebooks/04-Tabular_data_viz.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/darribas/data_science_studio/master?urlpath=tree/content/notebooks/04-Tabular_data_viz.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-quick-pandas">
+   Simple &amp; Quick (
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pandas
+    </span>
+   </code>
+   )
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seaborn">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     seaborn
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-control-matplotlib">
+   Full control (
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     matplotlib
+    </span>
+   </code>
+   )
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one">
+     One
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-or-more">
+     Two or more
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="visualising-tabular-data">
+<h1>Visualising Tabular Data<a class="headerlink" href="#visualising-tabular-data" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../overview.html#delivery-modes"><span class="std std-ref">👨‍🏫 [Sync]</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-quick-pandas">
+<h2>Simple &amp; Quick (<code class="docutils literal notranslate"><span class="pre">pandas</span></code>)<a class="headerlink" href="#simple-quick-pandas" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Frequency&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_3_1.png" src="../../_images/04-Tabular_data_viz_3_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Frequency&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_4_1.png" src="../../_images/04-Tabular_data_viz_4_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Price &lt; 500&quot;</span><span class="p">)[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_5_1.png" src="../../_images/04-Tabular_data_viz_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;accommodates&quot;</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;accommodates&#39;, ylabel=&#39;Price&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_6_1.png" src="../../_images/04-Tabular_data_viz_6_1.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong></p>
+<ul class="simple">
+<li><p>Create a histogram of the distribution of number of people a property accommodates (<code class="docutils literal notranslate"><span class="pre">accommodates</span></code>)</p></li>
+<li><p>Create a scatter plot of the number of beds and number of bedrooms</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>More</strong></p>
+<blockquote>
+<div><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html"><code class="docutils literal notranslate"><span class="pre">https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html</span></code></a></p>
+</div></blockquote>
+<p>We can also combine this with groupings from the previous notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">)</span>\
+  <span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">]</span>\
+  <span class="o">.</span><span class="n">mean</span><span class="p">()</span>\
+  <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;neighbourhood_cleansed&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_9_1.png" src="../../_images/04-Tabular_data_viz_9_1.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong></p>
+<p>Create a bar plot of the average <code class="docutils literal notranslate"><span class="pre">review_scores_rating</span></code> by neighbourhood, sorted by average price.</p>
+<p>For a “pro” touch (optional), substract 90 from the reviews score before plotting.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="seaborn">
+<h2><code class="docutils literal notranslate"><span class="pre">seaborn</span></code><a class="headerlink" href="#seaborn" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Univariate</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Price &lt; 500&quot;</span><span class="p">)[</span><span class="s2">&quot;Price&quot;</span><span class="p">],</span> 
+             <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+             <span class="n">rug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/seaborn/distributions.py:2551: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+/opt/conda/lib/python3.8/site-packages/seaborn/distributions.py:2055: FutureWarning: The `axis` variable is no longer used and will be removed. Instead, assign variables directly to `x` or `y`.
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Price&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_13_2.png" src="../../_images/04-Tabular_data_viz_13_2.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Bivariate</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;accommodates&quot;</span><span class="p">,</span>
+              <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Price&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="p">,</span>
+              <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hex&quot;</span>
+             <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04-Tabular_data_viz_15_0.png" src="../../_images/04-Tabular_data_viz_15_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;accommodates&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Price&quot;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Price &lt; 500&quot;</span><span class="p">)</span>
+           <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04-Tabular_data_viz_16_0.png" src="../../_images/04-Tabular_data_viz_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;accommodates&quot;</span><span class="p">,</span>
+              <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Price&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Price &lt; 500&quot;</span><span class="p">)</span>\
+                     <span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span>
+              <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span>
+             <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04-Tabular_data_viz_17_0.png" src="../../_images/04-Tabular_data_viz_17_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong></p>
+<p>Explore the documentation of <code class="docutils literal notranslate"><span class="pre">jointplot</span></code> and create a figure similar to the one above where you replace the hexagonal binning for a KDE. Since this will probably take too long, subset your data before plotting to only properties cheaper than $500, and then randomly sample 1,000 observations (tip: check out the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html"><code class="docutils literal notranslate"><span class="pre">sample</span></code></a> method).</p>
+<hr class="docutils" />
+<p><strong>More</strong></p>
+<blockquote>
+<div><p><a class="reference external" href="http://seaborn.pydata.org/tutorial.html"><code class="docutils literal notranslate"><span class="pre">http://seaborn.pydata.org/tutorial.html</span></code></a></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Categorical</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Price&quot;</span><span class="p">,</span>
+              <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">db</span>
+             <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04-Tabular_data_viz_20_0.png" src="../../_images/04-Tabular_data_viz_20_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;room_type&quot;</span><span class="p">,</span>
+              <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Price&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;neighbourhood_cleansed == &#39;Louvre&#39;&quot;</span><span class="p">)</span>\
+                     <span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+              <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span>
+             <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/seaborn/categorical.py:1296: UserWarning: 58.3% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_21_1.png" src="../../_images/04-Tabular_data_viz_21_1.png" />
+</div>
+</div>
+<p>To note:</p>
+<ul class="simple">
+<li><p>With larger datasets, it’s hard to see any pattern</p></li>
+<li><p>This is true even if you jitter the points around to avoid overlap and/or you play with transparency (<code class="docutils literal notranslate"><span class="pre">alpha</span></code>)</p></li>
+<li><p>Algorithms to separate out dots exist but they’re computationally intensive and can only do so much</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Price&quot;</span><span class="p">,</span>
+              <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;property_type&quot;</span><span class="p">,</span>
+              <span class="n">hue</span> <span class="o">=</span> <span class="s2">&quot;room_type&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;neighbourhood_cleansed == &#39;Louvre&#39;&quot;</span><span class="p">)</span>\
+                     <span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+              <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span>
+             <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04-Tabular_data_viz_23_0.png" src="../../_images/04-Tabular_data_viz_23_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;room_type&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Price&quot;</span><span class="p">,</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">db</span>
+           <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04-Tabular_data_viz_24_0.png" src="../../_images/04-Tabular_data_viz_24_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nei_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Hôtel-de-Ville&quot;</span><span class="p">,</span> <span class="s2">&quot;Louvre&quot;</span><span class="p">,</span> <span class="s2">&quot;Buttes-Montmartre&quot;</span><span class="p">]</span>
+<span class="n">sub</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">nei_list</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Price&quot;</span><span class="p">,</span>
+               <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;neighbourhood_cleansed&quot;</span><span class="p">,</span>
+               <span class="n">data</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="n">sub</span><span class="p">]</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Price &lt; 500&quot;</span><span class="p">)</span>
+              <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04-Tabular_data_viz_25_0.png" src="../../_images/04-Tabular_data_viz_25_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong></p>
+<p>Explore the distribution of price by property type</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="full-control-matplotlib">
+<h2>Full control (<code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>)<a class="headerlink" href="#full-control-matplotlib" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="one">
+<h3>One<a class="headerlink" href="#one" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04-Tabular_data_viz_29_0.png" src="../../_images/04-Tabular_data_viz_29_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Price &lt; 500&quot;</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s1">&#39;accommodates&#39;</span><span class="p">],</span> 
+            <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s1">&#39;accommodates&#39;</span><span class="p">],</span>
+           <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_30_1.png" src="../../_images/04-Tabular_data_viz_30_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span>
+            <span class="n">sub</span><span class="p">[</span><span class="s1">&#39;accommodates&#39;</span><span class="p">],</span> 
+            <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Purples&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_31_1.png" src="../../_images/04-Tabular_data_viz_31_1.png" />
+</div>
+</div>
+<p><strong>CHALLENGE</strong> - Create a visualisation that includes a KDE and a scatter plot and that explores the relationship between number of beds and number of people it accommodates, for a random sample of 500 properties.</p>
+</div>
+<div class="section" id="two-or-more">
+<h3>Two or more<a class="headerlink" href="#two-or-more" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> 
+             <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+             <span class="n">rug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+             <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;accommodates&#39;</span><span class="p">],</span> 
+             <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+             <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+             <span class="n">rug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+             <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/seaborn/distributions.py:2551: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+/opt/conda/lib/python3.8/site-packages/seaborn/distributions.py:2055: FutureWarning: The `axis` variable is no longer used and will be removed. Instead, assign variables directly to `x` or `y`.
+  warnings.warn(msg, FutureWarning)
+/opt/conda/lib/python3.8/site-packages/seaborn/distributions.py:2551: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+  warnings.warn(msg, FutureWarning)
+/opt/conda/lib/python3.8/site-packages/seaborn/distributions.py:2055: FutureWarning: The `axis` variable is no longer used and will be removed. Instead, assign variables directly to `x` or `y`.
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<img alt="../../_images/04-Tabular_data_viz_34_1.png" src="../../_images/04-Tabular_data_viz_34_1.png" />
+</div>
+</div>
+<p><strong>CHALLENGE</strong> - Create a visualisation for all of the properties with three subplots:</p>
+<ol class="simple">
+<li><p>Histogram of price</p></li>
+<li><p>Scatter plot of price Vs number of people it accommodates</p></li>
+<li><p>Histogram of number of people the property accommodates</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="03-Tabular_data.html" title="previous page">Reading &amp; Manipulating Tabular Data</a>
+    <a class='right-next' id="next-link" href="05-Tabular_advanced.html" title="next page">Advanced Tabular Manipulation</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dani Arribas-Bel<br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Data Science Studio</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-6032674-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

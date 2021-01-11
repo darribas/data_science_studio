@@ -1,0 +1,1309 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unsupervised Learning &#8212; Data Science Studio</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Supervised Learning" href="07-Supervised_learning.html" />
+    <link rel="prev" title="Advanced Tabular Manipulation" href="05-Tabular_advanced.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Science Studio</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../home.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Course Specs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#data">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html#further-materials">
+   Further materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../assessment.html">
+   Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../infrastructure.html">
+   Infrastructure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../z_bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction.html">
+   “Data, data, data”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Computational_building_blocks.html">
+   Computational building blocks
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data Wrangling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Tabular_data.html">
+   Reading &amp; Manipulating Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Tabular_data_viz.html">
+   Visualising Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Tabular_advanced.html">
+   Advanced Tabular Manipulation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Supervised_learning.html">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Inference.html">
+   Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Overfitting_cv.html">
+   Overfitting &amp; Cross-Validation
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/notebooks/06-Unsupervised_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/darribas/data_science_studio/master?urlpath=tree/content/notebooks/06-Unsupervised_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#to-do-before">
+   To do before…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#action">
+   Action!
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explore">
+     Explore
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classify">
+     Classify
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explore-the-classification">
+     Explore the classification
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="unsupervised-learning">
+<h1>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="to-do-before">
+<span id="unsupervised-async"></span><h2>To do before…<a class="headerlink" href="#to-do-before" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../overview.html#delivery-modes"><span class="std std-ref">💻 [Async]</span></a></p>
+<p>Before we jump on the action, we are going to get some background on unsupervised learning. Please complete watching the following three clips, all sourced from the <a class="reference external" href="https://darribas.org/gds_course/">Geographic Data Science course</a>:</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://darribas.org/gds_course/content/bG/concepts_G.html#the-need-to-group-data"><em>The need to group data</em></a>, which describes <em>why</em> unsupervised learning is useful</p></li>
+<li><p><a class="reference external" href="https://darribas.org/gds_course/content/bG/concepts_G.html#non-spatial-clustering"><em>Non-spatial clustering</em></a>, which describes <em>what</em> unsupervised learning is and illustrates it</p></li>
+<li><p><a class="reference external" href="https://darribas.org/gds_course/content/bG/concepts_G.html#k-means"><em>K-Means</em></a>, which introduces the technique we’ll use in class and, by far, most popular one to cluster data</p></li>
+</ol>
+</div>
+<div class="section" id="action">
+<span id="unsupervised-sync"></span><h2>Action!<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../overview.html#delivery-modes"><span class="std std-ref">👨‍🏫 [Sync]</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">seed</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span><span class="p">,</span> <span class="n">calinski_harabasz_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">scale</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">orig</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+<span class="n">reviews</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb_review.csv.zip&quot;</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">orig</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reviews</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="explore">
+<h3>Explore<a class="headerlink" href="#explore" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">review_areas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;review_scores_accuracy&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;review_scores_cleanliness&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;review_scores_checkin&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;review_scores_communication&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;review_scores_location&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;review_scores_value&quot;</span>
+               <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>review_scores_accuracy</th>
+      <td>50280.0</td>
+      <td>9.576929</td>
+      <td>0.824413</td>
+      <td>2.0</td>
+      <td>9.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>review_scores_cleanliness</th>
+      <td>50280.0</td>
+      <td>9.178540</td>
+      <td>1.107574</td>
+      <td>2.0</td>
+      <td>9.0</td>
+      <td>9.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>review_scores_checkin</th>
+      <td>50280.0</td>
+      <td>9.660302</td>
+      <td>0.769064</td>
+      <td>2.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>review_scores_communication</th>
+      <td>50280.0</td>
+      <td>9.703520</td>
+      <td>0.727020</td>
+      <td>2.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>review_scores_location</th>
+      <td>50280.0</td>
+      <td>9.654018</td>
+      <td>0.696448</td>
+      <td>2.0</td>
+      <td>9.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>review_scores_value</th>
+      <td>50280.0</td>
+      <td>9.254515</td>
+      <td>0.930852</td>
+      <td>2.0</td>
+      <td>9.0</td>
+      <td>9.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">],</span>
+                               <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/06-Unsupervised_learning_7_0.png" src="../../_images/06-Unsupervised_learning_7_0.png" />
+</div>
+</div>
+<p>This 👆, into a composite index.</p>
+</div>
+<div class="section" id="classify">
+<h3>Classify<a class="headerlink" href="#classify" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> has a very consistent API (learn it once, use it across). It comes in a few flavors:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- `fit`
+- `fit_transform`
+- Direct method
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>All raw</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimator</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">estimator</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KMeans(n_clusters=5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KMeans(n_clusters=5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k5_raw</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">estimator</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span>
+                       <span class="n">index</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">index</span>
+                      <span class="p">)</span>
+<span class="n">k5_raw</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    3
+1    0
+2    1
+3    3
+4    3
+dtype: int32
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>NOTE</strong> <code class="docutils literal notranslate"><span class="pre">fit</span></code></p>
+<ul class="simple">
+<li><p>All standardised</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Minus mean, divided by std</span>
+<span class="n">db_stded</span> <span class="o">=</span> <span class="n">scale</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">])</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">db_stded</span><span class="p">,</span> 
+                 <span class="n">index</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                 <span class="n">columns</span> <span class="o">=</span> <span class="n">review_areas</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>\
+                 <span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>review_scores_accuracy</th>
+      <th>review_scores_cleanliness</th>
+      <th>review_scores_checkin</th>
+      <th>review_scores_communication</th>
+      <th>review_scores_location</th>
+      <th>review_scores_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mean</th>
+      <td>2.450638e-14</td>
+      <td>1.191311e-14</td>
+      <td>-3.519940e-14</td>
+      <td>-3.060389e-14</td>
+      <td>-1.223943e-14</td>
+      <td>1.039476e-16</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.000010e+00</td>
+      <td>1.000010e+00</td>
+      <td>1.000010e+00</td>
+      <td>1.000010e+00</td>
+      <td>1.000010e+00</td>
+      <td>1.000010e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>NOTE</strong> <code class="docutils literal notranslate"><span class="pre">scale</span></code> API</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Range scale</span>
+<span class="n">range_scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">db_scaled</span> <span class="o">=</span> <span class="n">range_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">])</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">db_scaled</span><span class="p">,</span>
+                 <span class="n">index</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                 <span class="n">columns</span> <span class="o">=</span> <span class="n">review_areas</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>\
+                 <span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>review_scores_accuracy</th>
+      <th>review_scores_cleanliness</th>
+      <th>review_scores_checkin</th>
+      <th>review_scores_communication</th>
+      <th>review_scores_location</th>
+      <th>review_scores_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>min</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>NOTE</strong> <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">db_stded</span><span class="p">)</span>
+
+<span class="n">k5_std</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">estimator</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span>
+                       <span class="n">index</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">index</span>
+                      <span class="p">)</span>
+<span class="n">k5_std</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0
+1    4
+2    0
+3    0
+4    0
+dtype: int32
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Projected to lower dimension</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca_estimator</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca_estimator</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PCA(n_components=2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">components</span> <span class="o">=</span> <span class="n">pca_estimator</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">])</span>
+<span class="n">components</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">components</span><span class="p">,</span>
+                              <span class="n">index</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                              <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C-1&quot;</span><span class="p">,</span> <span class="s2">&quot;C-2&quot;</span><span class="p">]</span>
+                             <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">components</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;C-1&quot;</span><span class="p">,</span> 
+                        <span class="s2">&quot;C-2&quot;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="mi">1</span>
+                       <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/06-Unsupervised_learning_24_0.png" src="../../_images/06-Unsupervised_learning_24_0.png" />
+</div>
+</div>
+<p>Now we cluster the two components instead of all the input variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
+<span class="n">k5_pca</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">estimator</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span>
+                       <span class="n">index</span><span class="o">=</span><span class="n">components</span><span class="o">.</span><span class="n">index</span>
+                      <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can compare how both solutions relate to each other (or not):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">components</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">k5_pca</span><span class="p">)</span>\
+          <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;C-1&quot;</span><span class="p">,</span> 
+                        <span class="s2">&quot;C-2&quot;</span><span class="p">,</span>
+                        <span class="n">c</span><span class="o">=</span><span class="s2">&quot;labels&quot;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Paired&quot;</span><span class="p">,</span>
+                        <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+                       <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;PCA&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">components</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">k5_raw</span><span class="p">)</span>\
+          <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;C-1&quot;</span><span class="p">,</span> 
+                        <span class="s2">&quot;C-2&quot;</span><span class="p">,</span>
+                        <span class="n">c</span><span class="o">=</span><span class="s2">&quot;labels&quot;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Paired&quot;</span><span class="p">,</span>
+                        <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+                       <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Raw&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/06-Unsupervised_learning_28_0.png" src="../../_images/06-Unsupervised_learning_28_0.png" />
+</div>
+</div>
+<p>Actually pretty similar (which is good!). But remember that our original input was expressed in the same units anyway, so it makes sense.</p>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong>: Add a third plot to the figure above visualising the labels with the range-scaled transformation.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="explore-the-classification">
+<h3>Explore the classification<a class="headerlink" href="#explore-the-classification" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Quality of clustering (<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.calinski_harabasz_score.html">Calinski and Harabasz score</a>, the ratio of between over within dispersion)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chs_raw</span> <span class="o">=</span> <span class="n">calinski_harabasz_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">],</span>
+                                  <span class="n">k5_raw</span>
+                                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chs_std</span> <span class="o">=</span> <span class="n">calinski_harabasz_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">],</span>
+                                  <span class="n">k5_std</span>
+                                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chs_pca</span> <span class="o">=</span> <span class="n">calinski_harabasz_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">],</span>
+                                  <span class="n">k5_pca</span>
+                                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;Raw&quot;</span><span class="p">:</span> <span class="n">chs_raw</span><span class="p">,</span>
+               <span class="s2">&quot;Standardised&quot;</span><span class="p">:</span> <span class="n">chs_std</span><span class="p">,</span>
+               <span class="s2">&quot;PCA&quot;</span><span class="p">:</span> <span class="n">chs_pca</span><span class="p">,</span>
+              <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Raw             16548.489419
+Standardised    14674.706963
+PCA             16519.822001
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>The higher, the better, so either the original or PCA.</p>
+<p>We can also use this to “optimise” (or at least explore its behaviour) the number of clusters. Let’s pick the original input as the scores suggest are more desirable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="n">chss</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]:</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
+    <span class="n">chs</span> <span class="o">=</span> <span class="n">calinski_harabasz_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">],</span> 
+                                  <span class="n">estimator</span><span class="o">.</span><span class="n">labels_</span>
+                                 <span class="p">)</span>
+    <span class="n">chss</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">chs</span>
+<span class="n">chss</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">chss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2min 32s, sys: 1min 9s, total: 3min 42s
+Wall time: 14.6 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chss</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../../_images/06-Unsupervised_learning_39_1.png" src="../../_images/06-Unsupervised_learning_39_1.png" />
+</div>
+</div>
+<p>5 clusters? 🤔</p>
+<ul class="simple">
+<li><p>Quality of clustering (<a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#silhouette-coefficient">silhouette scores</a>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">sil_raw</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">],</span> 
+                           <span class="n">k5_raw</span><span class="p">,</span>
+                           <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span>
+                          <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1min 3s, sys: 4min 38s, total: 5min 41s
+Wall time: 41.5 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">sil_std</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">],</span> 
+                           <span class="n">k5_std</span><span class="p">,</span>
+                           <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span>
+                          <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1min 4s, sys: 4min 28s, total: 5min 33s
+Wall time: 41.3 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">sil_pca</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">],</span> 
+                           <span class="n">k5_pca</span><span class="p">,</span>
+                           <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span>
+                          <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1min 5s, sys: 4min 22s, total: 5min 28s
+Wall time: 41 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;Raw&quot;</span><span class="p">:</span> <span class="n">sil_raw</span><span class="p">,</span>
+               <span class="s2">&quot;Standardised&quot;</span><span class="p">:</span> <span class="n">sil_std</span><span class="p">,</span>
+               <span class="s2">&quot;PCA&quot;</span><span class="p">:</span> <span class="n">sil_pca</span><span class="p">,</span>
+              <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Raw             0.314448
+Standardised    0.304222
+PCA             0.314263
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>For a graphical analysis of silhouette scores, see here:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html">https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html</a></p>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong> Compare silhouette scores across our three original approaches for three and 20 clusters</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Characterise</p></li>
+</ul>
+<p>Internally:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">]</span>\
+      <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">k5_pca</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>\
+ <span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3      437
+4     2850
+1     7752
+0    16468
+2    22773
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>review_scores_accuracy</th>
+      <th>review_scores_cleanliness</th>
+      <th>review_scores_checkin</th>
+      <th>review_scores_communication</th>
+      <th>review_scores_location</th>
+      <th>review_scores_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>9.705186</td>
+      <td>8.728564</td>
+      <td>9.867379</td>
+      <td>9.907335</td>
+      <td>9.759716</td>
+      <td>9.331188</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9.020253</td>
+      <td>8.901961</td>
+      <td>8.986068</td>
+      <td>9.084752</td>
+      <td>9.288442</td>
+      <td>8.639706</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9.931366</td>
+      <td>10.000000</td>
+      <td>9.923989</td>
+      <td>9.949370</td>
+      <td>9.822992</td>
+      <td>9.699864</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.993135</td>
+      <td>4.789474</td>
+      <td>5.665904</td>
+      <td>5.734554</td>
+      <td>7.212815</td>
+      <td>4.528604</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8.220702</td>
+      <td>6.640000</td>
+      <td>8.803158</td>
+      <td>8.852982</td>
+      <td>9.061754</td>
+      <td>7.649825</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/06-Unsupervised_learning_52_0.png" src="../../_images/06-Unsupervised_learning_52_0.png" />
+</div>
+</div>
+<p>To explore the <em>distribution</em> of the values inside each cluster, rather than their mean, we can use the fancy <code class="docutils literal notranslate"><span class="pre">FaceGrid</span></code> approach:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tidy_db</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="n">review_areas</span><span class="p">]</span>\
+            <span class="o">.</span><span class="n">stack</span><span class="p">()</span>\
+            <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
+            <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;level_1&quot;</span><span class="p">:</span> <span class="s2">&quot;Var&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;level_0&quot;</span><span class="p">:</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span>
+                             <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Value&quot;</span>
+                            <span class="p">})</span>\
+            <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Label&quot;</span><span class="p">:</span> <span class="n">k5_pca</span><span class="p">}),</span>
+                  <span class="n">on</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">)</span>
+<span class="n">tidy_db</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>Var</th>
+      <th>Value</th>
+      <th>Label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>review_scores_accuracy</td>
+      <td>10.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>review_scores_cleanliness</td>
+      <td>10.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>review_scores_checkin</td>
+      <td>10.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>review_scores_communication</td>
+      <td>10.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>review_scores_location</td>
+      <td>10.0</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">tidy_db</span><span class="p">,</span>
+                  <span class="n">row</span><span class="o">=</span><span class="s2">&quot;Var&quot;</span><span class="p">,</span>
+                  <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Label&quot;</span><span class="p">,</span>
+                  <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                  <span class="n">aspect</span><span class="o">=</span><span class="mi">5</span>
+                 <span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">,</span> 
+      <span class="s2">&quot;Value&quot;</span><span class="p">,</span> 
+      <span class="n">hist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+      <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+      <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+      <span class="n">rug</span><span class="o">=</span><span class="kc">False</span>
+     <span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/seaborn/distributions.py:2551: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<img alt="../../_images/06-Unsupervised_learning_55_1.png" src="../../_images/06-Unsupervised_learning_55_1.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p>Externally:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cross with review_scores_rating</span>
+<span class="n">db</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">k5_pca</span><span class="p">)</span>\
+  <span class="p">[</span><span class="s2">&quot;review_scores_rating&quot;</span><span class="p">]</span>\
+  <span class="o">.</span><span class="n">mean</span><span class="p">()</span>\
+  <span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>\
+  <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span>
+             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span>
+            <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/06-Unsupervised_learning_57_0.png" src="../../_images/06-Unsupervised_learning_57_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>EXERCISE</strong> Can you cross the clustering results with property prices? Create:</p>
+<ul class="simple">
+<li><p>A bar plot with the average price by cluster</p></li>
+<li><p>A plot with the distribution (KDE/hist) of prices within cluster</p></li>
+</ul>
+<hr class="docutils" />
+<p>Before we move on, let’s also save the labels of the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;k5_pca&quot;</span><span class="p">:</span> <span class="n">k5_pca</span><span class="p">})</span>\
+      <span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;../data/k5_pca.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="05-Tabular_advanced.html" title="previous page">Advanced Tabular Manipulation</a>
+    <a class='right-next' id="next-link" href="07-Supervised_learning.html" title="next page">Supervised Learning</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dani Arribas-Bel<br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Data Science Studio</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-6032674-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>
