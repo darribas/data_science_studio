@@ -1,12 +1,11 @@
-% `ENVS615`
-% Dani Arribas-Bel
+% *Data, data, data*
+% `ENVS615` | Dani Arribas-Bel
 
 #
 ##
 
 * *Why* Data Science?
 * *What* is Data Science?
-* This course
 
 #
 ## *Why?*
@@ -67,59 +66,5 @@ Data, in itself, is not very useful... <span class='fragment'><span class='hlg'>
 + `GDS6`: Science about Data Science
 
 #
-## This course
-
-## Day 1
-
-- Computational environment **`[GDS3]`**
-- Data manipulation **`[GDS1 + GDS2]`**
-
-    - Gathering data
-    - Reading/writing data
-    - "Wrangling" patterns (query, join, groupby)
-    
-## Day 2
-
-- Exploring data visually **`[GDS4]`**
-- Unsupervised learning: clustering **`[GDS5]`**
-
-## Day 3
-
-- Modeling: the "*two cultures*" **`[GDS5]`**
-- Predictive checking **`[GDS5]`**
-- Overfitting & Cross-validation **`[GDS5]`**
-- Model predictive performance **`[GDS5]`**
-- More advanced methods **`[GDS5]`**
-- Discuss datasets for assignment
-
-## Day 4
-
-- Pick your favorite: Geo Vs API
-
-- <span class='hlg'>Data Studio</span>
-    - Use **your own** data
-    - Explore the skills learnt over the course
-    - 1-on-1
-    - Work on assignment
-
-## Python
-## {data-background=../figs/d1s1_xkcd-python.png data-background-size=contain data-transition=none data-transition=none}
-
-## Data
-
-## {data-background=../figs/d1s1_abb.png data-background-size=contain data-transition=none data-transition=none}
-
-## Assessment
-## Assessment
-
-<span class='hlg'>Computational essay</span>
-
-* Type: `Coursework`
-* [Equivalent to 5,000 words] Up to five figures and three tables + code +
-  comments + up to 2,000
-* Chance to be reassessed
-* Due on **March 9th at 2pm**
-* Electronic submission only. Static HTML with NO interactive cells
-
-More details on content at the end of the course!
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> "Data, data, data" </span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 

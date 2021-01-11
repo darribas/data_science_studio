@@ -12,24 +12,27 @@ Throughout the course content, each learning object (typically subsections in th
 
 Similarly, the overview below contains them for a quick, general sense at what is expected from you before we meet in synchronous sessions.
 
-## Day 1 - Introduction
+(schedule)=
+## Schedule
+
+### Day 1 - Introduction
 
 - 💻 `[Async]` Introduction to the course: [*data, data, data*](notebooks/01-Introduction)
 - 💻 `[Async]` [Computational building blocks](notebooks/02-Computational_building_blocks)
 
-## Day 2 - Tabular data
+### Day 2 - Tabular data
 
 - 👨‍🏫 `[Sync]` [Manipulation](notebooks/03-Tabular_data)
 - 👨‍🏫 `[Sync]` [Visualisation](notebooks/04-Tabular_data_viz)
 - 👨‍🏫 `[Sync]` [Advanced manipulation](notebooks/05-Tabular_advanced)
 
-## Day 3 - Unsupervised learning
+### Day 3 - Unsupervised learning
 
 - [Unsupervised learning](notebooks/06-Unsupervised_learning)
     - 💻 `[Async]` {ref}`Overview <unsupervised_async>`
     - 👨‍🏫 `[Sync]` {ref}`Hands-on <unsupervised_sync>`
 
-## Day 4 - Supervised learning
+### Day 4 - Supervised learning
 
 - [Introduction](notebooks/07-Supervised_learning)
     - 💻 `[Async]` {ref}`Overview <supervised_async>`
@@ -37,21 +40,19 @@ Similarly, the overview below contains them for a quick, general sense at what i
 - 👨‍🏫 `[Sync]` [Inference](notebooks/08-Inference)
 - 👨‍🏫 `[Sync]` [Overfitting & cross-validation](notebooks/09-Overfitting_cv)
 
-## Day 5
+### Day 5
 
 - [Data Studio](notebooks/10-Data_studio)
     - 💻 `[Async]` {ref}`Assignment brief <assignment_brief>`
     - 👨‍🏫 `[Sync]` {ref}`Studio time <studio_time>` 
 
-# Data
+## Programming Language
 
-All the data required for this course is contained in the zip compressed {ref}`bundled download <github_repo>` provided via Github.
+This course is entirely taught in the [Python](https://www.python.org/) programming language.
 
-Data preparation code is available, if you are so inclined, for you to peruse over [here](data/data_prep).
+```{margin}
+Source: [XKCD](https://xkcd.com/353/)
+```
+![](../figs/d1s1_xkcd-python.png)
 
-# Further materials
-
-A list of further materials where you can continue learning is available at:
-
-> [`http://darribas.org/gds19/further_resources.html`](http://darribas.org/gds19/further_resources.html)
-
+There are several reasons why we have made this choice. Many of them are summarised nicely in [this article by The Economist](https://www.economist.com/science-and-technology/2018/07/19/python-has-brought-computer-programming-to-a-vast-new-audience).

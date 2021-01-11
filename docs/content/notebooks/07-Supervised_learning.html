@@ -106,23 +106,18 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../overview.html#data">
-   Data
+  <a class="reference internal" href="../infrastructure.html">
+   Infrastructure
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../overview.html#further-materials">
-   Further materials
+  <a class="reference internal" href="../data.html">
+   Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../assessment.html">
    Assessment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../infrastructure.html">
-   Infrastructure
   </a>
  </li>
  <li class="toctree-l1">
@@ -287,6 +282,18 @@
   <a class="reference internal nav-link" href="#to-do-before">
    To do before…
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#background">
+     Background
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-trees">
+   Regression trees
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#action">
@@ -338,6 +345,8 @@
 <div class="section" id="to-do-before">
 <span id="supervised-async"></span><h2>To do before…<a class="headerlink" href="#to-do-before" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="../overview.html#delivery-modes"><span class="std std-ref">💻 [Async]</span></a></p>
+<div class="section" id="background">
+<h3>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h3>
 <p>Here is a taster for supervised learning to make you want more, which we’ll do on the live session. To prepare for this part of the course (which includes the <a class="reference internal" href="#supervised-sync"><span class="std std-ref">section below</span></a>, as well as the one on <a class="reference internal" href="08-Inference.html"><span class="doc std std-doc">inference</span></a> and <a class="reference internal" href="09-Overfitting_cv.html"><span class="doc std std-doc">overfitting/CV</span></a>), here are two tasks you will need to complete <em>before</em> the live session:</p>
 <p><em>First</em>, watch the following clip which sets up the scene for what will be to come</p>
 <div class="sidebar">
@@ -375,6 +384,50 @@
 <ul class="simple">
 <li><p><em>Machine Learning</em>: An Applied Econometric Approach* (<a class="bibtex reference internal" href="../z_bibliography.html#mullainathan2017machine" id="id2">[MS17]</a>)</p></li>
 </ul>
+</div>
+</div>
+<div class="section" id="regression-trees">
+<h2>Regression trees<a class="headerlink" href="#regression-trees" title="Permalink to this headline">¶</a></h2>
+<p>Most of this block relies on linear regression. Linear regression is one of the simplest but also most powerful supervised algorithms. Later in the section, we will contrast its use with another technique that has gained much popularity since its inception at the turn of the millenium: random forests. A detailed understanding of random forests goes beyond the scope of this course. However, its intuition will be useful and will be covered here.</p>
+<p>To understand random forests, we first need to learn about regression trees:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="700"
+    height="300"
+    src="https://www.youtube.com/embed/w4MnOA14pYs"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<p>A forest is no more than a collection of trees. A random forest thus will “grow” several trees, and then aggregate the predictions of each into a single, better prediction. This is what we call “bagging”:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="700"
+    height="300"
+    src="https://www.youtube.com/embed/KySpjLT92dM"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<p>Building on these two ideas, the notion of a “random” forest makes a bit more sense:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="700"
+    height="300"
+    src="https://www.youtube.com/embed/w4MnOA14pYs"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
 </div>
 <div class="section" id="action">
 <span id="supervised-sync"></span><h2>Action!<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h2>
@@ -508,7 +561,7 @@ P_i = \alpha + \beta X + \epsilon
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/07-Supervised_learning_14_0.png" src="../../_images/07-Supervised_learning_14_0.png" />
+<img alt="../../_images/07-Supervised_learning_19_0.png" src="../../_images/07-Supervised_learning_19_0.png" />
 </div>
 </div>
 <p>We could take the log to try to obtain a better fit:</p>

@@ -1,5 +1,5 @@
 % Thoughts on Modeling
-% Data Science Studio
+% `ENVS615` | Dani Arribas-Bel
 
 #
 ## The "Two Cultures"
@@ -24,8 +24,6 @@ $$
 #
 ## Modeling
 
-## Modeling
-
 <CENTER>
 $$
 y = f(X)
@@ -40,23 +38,16 @@ $$
 
 **`Gradient boost`** $\; \rightarrow \; f(X) =$ Sequence of predictors (e.g. trees)
 
-## Regression Trees
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/w4MnOA14pYs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-## Random Forest
-
-* Several regression trees
-* Random subsets of $N$ and $k$
-* Averaged for predictions
-
 #
-## Today
+## This block
 
 - Baseline model ($\beta$ + $y$)
+- Fitting Random Forests
 - Predictive checking ($\beta$ + $y$)
 - Uncertainty ($\beta$)
 - Model performance ($y$)
-- Fitting Random Forests
 - Overfitting & Cross-Validation ($y$)
 
+
+#
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> "Thoughts on modelling" </span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
