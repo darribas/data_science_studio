@@ -343,10 +343,33 @@
 
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">orig</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="d038ac48-4b70-4738-b091-9bd75a1a5a26" name="5b1e2c52-5c83-44e1-a16e-84fea2a35270" type="radio">
+</input><label class="tabbed-label" for="d038ac48-4b70-4738-b091-9bd75a1a5a26">
+Local files</label><div class="tabbed-content docutils">
+<p>Assuming you have the files downloaded on the path <code class="docutils literal notranslate"><span class="pre">../data/</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">orig</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
 <span class="n">reviews</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb_review.csv.zip&quot;</span><span class="p">)</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">orig</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reviews</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="303ad84b-0b3c-4a16-b4cc-1d6350cfb649" name="5b1e2c52-5c83-44e1-a16e-84fea2a35270" type="radio">
+</input><label class="tabbed-label" for="303ad84b-0b3c-4a16-b4cc-1d6350cfb649">
+Online read</label><div class="tabbed-content docutils">
+<p>If you’re online, you can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">orig</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+<span class="n">reviews</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb_review.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">orig</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reviews</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -480,7 +503,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/06-Unsupervised_learning_7_0.png" src="../../_images/06-Unsupervised_learning_7_0.png" />
+<img alt="../../_images/06-Unsupervised_learning_10_0.png" src="../../_images/06-Unsupervised_learning_10_0.png" />
 </div>
 </div>
 <p>This 👆, into a composite index.</p>
@@ -737,7 +760,7 @@ dtype: int32
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/06-Unsupervised_learning_24_0.png" src="../../_images/06-Unsupervised_learning_24_0.png" />
+<img alt="../../_images/06-Unsupervised_learning_27_0.png" src="../../_images/06-Unsupervised_learning_27_0.png" />
 </div>
 </div>
 <p>Now we cluster the two components instead of all the input variables:</p>
@@ -787,7 +810,7 @@ dtype: int32
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/06-Unsupervised_learning_28_0.png" src="../../_images/06-Unsupervised_learning_28_0.png" />
+<img alt="../../_images/06-Unsupervised_learning_31_0.png" src="../../_images/06-Unsupervised_learning_31_0.png" />
 </div>
 </div>
 <p>Actually pretty similar (which is good!). But remember that our original input was expressed in the same units anyway, so it makes sense.</p>
@@ -881,7 +904,7 @@ Wall time: 14.6 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
 </pre></div>
 </div>
-<img alt="../../_images/06-Unsupervised_learning_39_1.png" src="../../_images/06-Unsupervised_learning_39_1.png" />
+<img alt="../../_images/06-Unsupervised_learning_42_1.png" src="../../_images/06-Unsupervised_learning_42_1.png" />
 </div>
 </div>
 <p>5 clusters? 🤔</p>
@@ -1084,7 +1107,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/06-Unsupervised_learning_52_0.png" src="../../_images/06-Unsupervised_learning_52_0.png" />
+<img alt="../../_images/06-Unsupervised_learning_55_0.png" src="../../_images/06-Unsupervised_learning_55_0.png" />
 </div>
 </div>
 <p>To explore the <em>distribution</em> of the values inside each cluster, rather than their mean, we can use the fancy <code class="docutils literal notranslate"><span class="pre">FaceGrid</span></code> approach:</p>
@@ -1192,7 +1215,7 @@ dtype: int64
   warnings.warn(msg, FutureWarning)
 </pre></div>
 </div>
-<img alt="../../_images/06-Unsupervised_learning_55_1.png" src="../../_images/06-Unsupervised_learning_55_1.png" />
+<img alt="../../_images/06-Unsupervised_learning_58_1.png" src="../../_images/06-Unsupervised_learning_58_1.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -1211,7 +1234,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/06-Unsupervised_learning_57_0.png" src="../../_images/06-Unsupervised_learning_57_0.png" />
+<img alt="../../_images/06-Unsupervised_learning_60_0.png" src="../../_images/06-Unsupervised_learning_60_0.png" />
 </div>
 </div>
 <hr class="docutils" />

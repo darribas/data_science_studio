@@ -342,8 +342,24 @@
 <span class="kn">import</span> <span class="nn">pandas</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="620822b0-bb3e-4aa0-8ad1-49ad9356f6a4" name="6b5f4498-f55f-4501-a159-6fb258f640cd" type="radio">
+</input><label class="tabbed-label" for="620822b0-bb3e-4aa0-8ad1-49ad9356f6a4">
+Local files</label><div class="tabbed-content docutils">
+<p>Assuming you have <a class="reference external" href="https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb.csv.zip">the file</a> downloaded on the path <code class="docutils literal notranslate"><span class="pre">../data/</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="d57476f9-eb5e-4e8d-a323-2ec3319edeb9" name="6b5f4498-f55f-4501-a159-6fb258f640cd" type="radio">
+</input><label class="tabbed-label" for="d57476f9-eb5e-4e8d-a323-2ec3319edeb9">
+Online read</label><div class="tabbed-content docutils">
+<p>If you’re online, you can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -360,7 +376,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Frequency&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_3_1.png" src="../../_images/04-Tabular_data_viz_3_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_5_1.png" src="../../_images/04-Tabular_data_viz_5_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -373,7 +389,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Frequency&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_4_1.png" src="../../_images/04-Tabular_data_viz_4_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_6_1.png" src="../../_images/04-Tabular_data_viz_6_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -386,7 +402,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_5_1.png" src="../../_images/04-Tabular_data_viz_5_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_7_1.png" src="../../_images/04-Tabular_data_viz_7_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -399,7 +415,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;accommodates&#39;, ylabel=&#39;Price&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_6_1.png" src="../../_images/04-Tabular_data_viz_6_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_8_1.png" src="../../_images/04-Tabular_data_viz_8_1.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -427,7 +443,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;neighbourhood_cleansed&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_9_1.png" src="../../_images/04-Tabular_data_viz_9_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_11_1.png" src="../../_images/04-Tabular_data_viz_11_1.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -459,7 +475,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Price&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_13_2.png" src="../../_images/04-Tabular_data_viz_13_2.png" />
+<img alt="../../_images/04-Tabular_data_viz_15_2.png" src="../../_images/04-Tabular_data_viz_15_2.png" />
 </div>
 </div>
 <ul class="simple">
@@ -476,7 +492,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04-Tabular_data_viz_15_0.png" src="../../_images/04-Tabular_data_viz_15_0.png" />
+<img alt="../../_images/04-Tabular_data_viz_17_0.png" src="../../_images/04-Tabular_data_viz_17_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -489,7 +505,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04-Tabular_data_viz_16_0.png" src="../../_images/04-Tabular_data_viz_16_0.png" />
+<img alt="../../_images/04-Tabular_data_viz_18_0.png" src="../../_images/04-Tabular_data_viz_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -504,7 +520,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04-Tabular_data_viz_17_0.png" src="../../_images/04-Tabular_data_viz_17_0.png" />
+<img alt="../../_images/04-Tabular_data_viz_19_0.png" src="../../_images/04-Tabular_data_viz_19_0.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -528,7 +544,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04-Tabular_data_viz_20_0.png" src="../../_images/04-Tabular_data_viz_20_0.png" />
+<img alt="../../_images/04-Tabular_data_viz_22_0.png" src="../../_images/04-Tabular_data_viz_22_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -547,7 +563,7 @@
   warnings.warn(msg, UserWarning)
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_21_1.png" src="../../_images/04-Tabular_data_viz_21_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_23_1.png" src="../../_images/04-Tabular_data_viz_23_1.png" />
 </div>
 </div>
 <p>To note:</p>
@@ -569,7 +585,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04-Tabular_data_viz_23_0.png" src="../../_images/04-Tabular_data_viz_23_0.png" />
+<img alt="../../_images/04-Tabular_data_viz_25_0.png" src="../../_images/04-Tabular_data_viz_25_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -582,7 +598,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04-Tabular_data_viz_24_0.png" src="../../_images/04-Tabular_data_viz_24_0.png" />
+<img alt="../../_images/04-Tabular_data_viz_26_0.png" src="../../_images/04-Tabular_data_viz_26_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -598,7 +614,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04-Tabular_data_viz_25_0.png" src="../../_images/04-Tabular_data_viz_25_0.png" />
+<img alt="../../_images/04-Tabular_data_viz_27_0.png" src="../../_images/04-Tabular_data_viz_27_0.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -621,7 +637,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04-Tabular_data_viz_29_0.png" src="../../_images/04-Tabular_data_viz_29_0.png" />
+<img alt="../../_images/04-Tabular_data_viz_31_0.png" src="../../_images/04-Tabular_data_viz_31_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -645,7 +661,7 @@
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_30_1.png" src="../../_images/04-Tabular_data_viz_30_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_32_1.png" src="../../_images/04-Tabular_data_viz_32_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -665,7 +681,7 @@
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_31_1.png" src="../../_images/04-Tabular_data_viz_31_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_33_1.png" src="../../_images/04-Tabular_data_viz_33_1.png" />
 </div>
 </div>
 <p><strong>CHALLENGE</strong> - Create a visualisation that includes a KDE and a scatter plot and that explores the relationship between number of beds and number of people it accommodates, for a random sample of 500 properties.</p>
@@ -704,7 +720,7 @@
   warnings.warn(msg, FutureWarning)
 </pre></div>
 </div>
-<img alt="../../_images/04-Tabular_data_viz_34_1.png" src="../../_images/04-Tabular_data_viz_34_1.png" />
+<img alt="../../_images/04-Tabular_data_viz_36_1.png" src="../../_images/04-Tabular_data_viz_36_1.png" />
 </div>
 </div>
 <p><strong>CHALLENGE</strong> - Create a visualisation for all of the properties with three subplots:</p>

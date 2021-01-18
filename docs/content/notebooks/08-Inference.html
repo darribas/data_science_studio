@@ -340,10 +340,27 @@
 </div>
 </div>
 </div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="e4e20833-ec56-4b0d-83c6-844c76579e58" name="4697a53c-94f0-4dd5-92ef-df1772c306b4" type="radio">
+</input><label class="tabbed-label" for="e4e20833-ec56-4b0d-83c6-844c76579e58">
+Local files</label><div class="tabbed-content docutils">
+<p>Assuming you have <a class="reference external" href="https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb.csv.zip">the file</a> downloaded on the path <code class="docutils literal notranslate"><span class="pre">../data/</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="1a39d1a2-fc74-4c0e-98f9-fbce13de50f9" name="4697a53c-94f0-4dd5-92ef-df1772c306b4" type="radio">
+</input><label class="tabbed-label" for="1a39d1a2-fc74-4c0e-98f9-fbce13de50f9">
+Online read</label><div class="tabbed-content docutils">
+<p>If you’re online, you can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/paris_abb.csv.zip&#39;</span><span class="p">)</span>
-<span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;l_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">])</span>
 <span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -700,7 +717,7 @@ memory usage: 4.2+ MB
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;l_price&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/08-Inference_12_1.png" src="../../_images/08-Inference_12_1.png" />
+<img alt="../../_images/08-Inference_14_1.png" src="../../_images/08-Inference_14_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -713,7 +730,7 @@ memory usage: 4.2+ MB
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/08-Inference_13_1.png" src="../../_images/08-Inference_13_1.png" />
+<img alt="../../_images/08-Inference_15_1.png" src="../../_images/08-Inference_15_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -726,7 +743,7 @@ memory usage: 4.2+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08-Inference_14_0.png" src="../../_images/08-Inference_14_0.png" />
+<img alt="../../_images/08-Inference_16_0.png" src="../../_images/08-Inference_16_0.png" />
 </div>
 </div>
 <p>To note:</p>
@@ -824,7 +841,7 @@ memory usage: 4.2+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08-Inference_17_0.png" src="../../_images/08-Inference_17_0.png" />
+<img alt="../../_images/08-Inference_19_0.png" src="../../_images/08-Inference_19_0.png" />
 </div>
 </div>
 <p>To note:</p>
@@ -854,7 +871,7 @@ memory usage: 4.2+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08-Inference_20_0.png" src="../../_images/08-Inference_20_0.png" />
+<img alt="../../_images/08-Inference_22_0.png" src="../../_images/08-Inference_22_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1046,7 +1063,7 @@ Wall time: 632 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08-Inference_29_0.png" src="../../_images/08-Inference_29_0.png" />
+<img alt="../../_images/08-Inference_31_0.png" src="../../_images/08-Inference_31_0.png" />
 </div>
 </div>
 <p>To note:</p>
@@ -1111,7 +1128,7 @@ Wall time: 2.08 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08-Inference_32_0.png" src="../../_images/08-Inference_32_0.png" />
+<img alt="../../_images/08-Inference_34_0.png" src="../../_images/08-Inference_34_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1129,7 +1146,7 @@ Wall time: 2.08 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08-Inference_33_0.png" src="../../_images/08-Inference_33_0.png" />
+<img alt="../../_images/08-Inference_35_0.png" src="../../_images/08-Inference_35_0.png" />
 </div>
 </div>
 <p>To note:</p>
@@ -1203,7 +1220,7 @@ Wall time: 643 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08-Inference_38_0.png" src="../../_images/08-Inference_38_0.png" />
+<img alt="../../_images/08-Inference_40_0.png" src="../../_images/08-Inference_40_0.png" />
 </div>
 </div>
 <p><strong>[Pro]</strong></p>
@@ -1248,7 +1265,7 @@ Wall time: 643 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08-Inference_40_0.png" src="../../_images/08-Inference_40_0.png" />
+<img alt="../../_images/08-Inference_42_0.png" src="../../_images/08-Inference_42_0.png" />
 </div>
 </div>
 <div class="cell docutils container">

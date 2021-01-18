@@ -439,8 +439,24 @@
 
 <span class="kn">import</span> <span class="nn">pandas</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="bb36f9c7-e0a5-4922-ba9b-ecfbeeb31e49" name="b3a277a6-00b0-4154-aff4-4b8a9963e9f0" type="radio">
+</input><label class="tabbed-label" for="bb36f9c7-e0a5-4922-ba9b-ecfbeeb31e49">
+Local files</label><div class="tabbed-content docutils">
+<p>Assuming you have <a class="reference external" href="https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb.csv.zip">the file</a> downloaded on the path <code class="docutils literal notranslate"><span class="pre">../data/</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="7bcc16ee-c4d0-4b60-8533-00d593fd3689" name="b3a277a6-00b0-4154-aff4-4b8a9963e9f0" type="radio">
+</input><label class="tabbed-label" for="7bcc16ee-c4d0-4b60-8533-00d593fd3689">
+Online read</label><div class="tabbed-content docutils">
+<p>If you’re online, you can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -561,7 +577,7 @@ P_i = \alpha + \beta X + \epsilon
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/07-Supervised_learning_19_0.png" src="../../_images/07-Supervised_learning_19_0.png" />
+<img alt="../../_images/07-Supervised_learning_21_0.png" src="../../_images/07-Supervised_learning_21_0.png" />
 </div>
 </div>
 <p>We could take the log to try to obtain a better fit:</p>

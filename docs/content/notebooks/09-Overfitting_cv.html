@@ -334,10 +334,33 @@
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">log1p</span><span class="p">,</span> <span class="n">sqrt</span>
-
-<span class="n">base</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="6977aab6-b968-41a8-af14-ab1c88d4f4d8" name="d173f763-00a9-445e-b083-af17c0cd00dd" type="radio">
+</input><label class="tabbed-label" for="6977aab6-b968-41a8-af14-ab1c88d4f4d8">
+Local files</label><div class="tabbed-content docutils">
+<p>Assuming you have the files downloaded on the path <code class="docutils literal notranslate"><span class="pre">../data/</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">orig</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;../data/lm_results.parquet&quot;</span><span class="p">)</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="7f06acfc-21eb-4d0e-a77b-543738231df7" name="d173f763-00a9-445e-b083-af17c0cd00dd" type="radio">
+</input><label class="tabbed-label" for="7f06acfc-21eb-4d0e-a77b-543738231df7">
+Online read</label><div class="tabbed-content docutils">
+<p>If you’re online, you can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">orig</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/darribas/data_science_studio/raw/master/content/data/paris_abb.csv.zip&quot;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;https://github.com/darribas/data_science_studio/raw/master/content/data/lm_results.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -374,7 +397,7 @@
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../../_images/09-Overfitting_cv_4_1.png" src="../../_images/09-Overfitting_cv_4_1.png" />
+<img alt="../../_images/09-Overfitting_cv_7_1.png" src="../../_images/09-Overfitting_cv_7_1.png" />
 </div>
 </div>
 <p>There are several measures, we’ll use two:</p>
@@ -989,7 +1012,7 @@ Name: params, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/09-Overfitting_cv_59_0.png" src="../../_images/09-Overfitting_cv_59_0.png" />
+<img alt="../../_images/09-Overfitting_cv_62_0.png" src="../../_images/09-Overfitting_cv_62_0.png" />
 </div>
 </div>
 <p>It is also possible to see that, as expected, the more trees, the longer it takes to compute:</p>
@@ -1004,7 +1027,7 @@ Name: params, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/09-Overfitting_cv_61_0.png" src="../../_images/09-Overfitting_cv_61_0.png" />
+<img alt="../../_images/09-Overfitting_cv_64_0.png" src="../../_images/09-Overfitting_cv_64_0.png" />
 </div>
 </div>
 <hr class="docutils" />
